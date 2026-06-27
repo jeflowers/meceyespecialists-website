@@ -117,7 +117,47 @@
 </section>
 
 <div data-footer></div>
+<script src="../assets/supabase.js"></script>
 <script src="../assets/site.js"></script>
 <script src="../assets/footer.js"></script>
+<script>
+document.querySelector('.mform').addEventListener('mec-form-submit', function () {
+  var inputs = this.querySelectorAll('input, select, textarea');
+  var fields = {};
+  inputs.forEach(function (el) {
+    if (el.type === 'checkbox' || el.type === 'radio') return;
+    var label = el.closest('.field');
+    if (!label) return;
+    var lbl = label.querySelector('label');
+    if (!lbl) return;
+    var key = (lbl.getAttribute('data-en') || lbl.textContent).replace(/[^a-zA-Z0-9]/g, '_').toLowerCase().replace(/_+$/, '');
+    fields[key] = el.value || null;
+  });
+  var radios = this.querySelectorAll('input[name="pref"]:checked');
+  var pref = radios.length ? radios[0].closest('.choice').querySelector('b').getAttribute('data-en') : 'Call';
+
+  window.MEC.supabaseInsert('registrations', {
+    first_name: fields.first_name || '',
+    last_name: fields.last_name || '',
+    date_of_birth: fields.date_of_birth || null,
+    sex: fields.sex_assigned_at_birth || null,
+    preferred_language: fields.preferred_language || null,
+    marital_status: fields.marital_status || null,
+    street_address: fields.street_address || null,
+    city: fields.city || null,
+    state: fields.state || null,
+    zip: fields.zip || null,
+    phone: fields.mobile_phone || null,
+    email: fields.email || null,
+    contact_method: pref,
+    emergency_name: fields.full_name || null,
+    emergency_relationship: fields.relationship || null,
+    emergency_phone: fields.phone || null,
+    pharmacy_name: fields.pharmacy_name || null,
+    pharmacy_location: fields.pharmacy_location___city || null,
+    heard_about_us: fields.how_did_you_hear_about_us_ || null
+  }).catch(function (err) { console.error('Registration save error:', err); });
+});
+</script>
 </body>
 </html>

@@ -46,18 +46,19 @@
         <span class="eyebrow on-dark" data-en="Secure Login" data-es="Acceso Seguro">Secure Login</span>
         <h2 style="margin-top:12px" data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</h2>
         <p data-en="View test results, message your care team, request prescription refills, and check upcoming appointments — all in one secure place." data-es="Consulta resultados, comunícate con tu equipo, solicita resurtidos de recetas y revisa próximas citas, todo en un lugar seguro.">View test results, message your care team, request prescription refills, and check upcoming appointments — all in one secure place.</p>
-        <form class="portal-form" onsubmit="return false">
+        <form class="portal-form" onsubmit="this.querySelector('.portal-msg').hidden=false;return false">
           <input type="email" placeholder="Email" data-en-ph="Email address" data-es-ph="Correo electrónico" aria-label="Email">
           <input type="password" placeholder="Password" data-en-ph="Password" data-es-ph="Contraseña" aria-label="Password">
           <button class="btn btn-amber" type="submit" data-en="Log In to Portal" data-es="Entrar al Portal">Log In to Portal</button>
           <div class="secure-note" style="color:rgba(255,255,255,.75);margin-top:2px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--amber-soft)"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span data-en="HIPAA-secure & encrypted" data-es="Seguro HIPAA y encriptado">HIPAA-secure &amp; encrypted</span></div>
+          <p class="portal-msg" hidden style="color:var(--amber-soft);font-size:13.5px;margin-top:10px;text-align:center" data-en="Portal access is provided after your first visit. Call (844) 211-5462 for help." data-es="El acceso al portal se proporciona después de tu primera visita. Llama al (844) 211-5462 para ayuda.">Portal access is provided after your first visit. Call (844) 211-5462 for help.</p>
         </form>
       </div>
 
       <div class="bill-card" id="billpay">
         <h3 data-en="Quick actions" data-es="Acciones rápidas">Quick actions</h3>
         <div class="quick-links">
-          <a href="#" data-en="Pay My Bill" data-es="Pagar Mi Factura"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Pay My Bill<span class="ar">→</span></a>
+          <a href="tel:8442115462" data-en="Pay My Bill" data-es="Pagar Mi Factura"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Pay My Bill<span class="ar">→</span></a>
           <a href="forms/registration.html" data-en="Request an Appointment" data-es="Solicitar una Cita"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Request an Appointment<span class="ar">→</span></a>
           <a href="forms/registration.html" data-en="Complete New-Patient Forms" data-es="Completar Formularios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Complete New-Patient Forms<span class="ar">→</span></a>
           <a href="referrals.html" data-en="Refer a Patient" data-es="Referir un Paciente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>Refer a Patient<span class="ar">→</span></a>

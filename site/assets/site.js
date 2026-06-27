@@ -150,6 +150,10 @@
         var done = form.querySelector('.fdone');
         var wrap = form.querySelector('.fsteps-wrap');
         var rail = form.querySelector('.fprogress');
+
+        var evt = new CustomEvent('mec-form-submit', { detail: { form: form }, cancelable: true });
+        form.dispatchEvent(evt);
+
         if (done) {
           if (wrap) wrap.hidden = true;
           if (rail) rail.hidden = true;

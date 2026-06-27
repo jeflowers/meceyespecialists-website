@@ -90,7 +90,7 @@
           <div class="fdone" hidden>
             <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg></div>
             <h2 data-en="All forms complete!" data-es="¡Todos los formularios completos!">All forms complete!</h2>
-            <p data-en="Thank you for completing your new-patient paperwork. You're all set — we look forward to seeing you. A confirmation has been sent to your email." data-es="Gracias por completar tu papeleo de paciente nuevo. Ya está todo listo: esperamos verte pronto. Se ha enviado una confirmación a tu correo.">Thank you for completing your new-patient paperwork. You're all set — we look forward to seeing you. A confirmation has been sent to your email.</p>
+            <p data-en="Thank you for completing your new-patient paperwork. You're all set — we look forward to seeing you." data-es="Gracias por completar tu papeleo de paciente nuevo. Ya está todo listo: esperamos verte pronto.">Thank you for completing your new-patient paperwork. You're all set — we look forward to seeing you.</p>
             <div class="actions"><a href="../index.html" class="btn btn-primary" data-en="Back to Home" data-es="Volver al Inicio">Back to Home</a><a href="../patients.html" class="btn btn-ghost" data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</a></div>
           </div>
         </div>
@@ -100,7 +100,58 @@
 </section>
 
 <div data-footer></div>
+<script src="../assets/supabase.js"></script>
 <script src="../assets/site.js"></script>
 <script src="../assets/footer.js"></script>
+<script>
+(function () {
+  var form = document.querySelector('.mform');
+  var sigCanvas = form.querySelector('canvas.sigpad');
+  var sigDirty = false;
+
+  if (sigCanvas) {
+    var observer = new MutationObserver(function () {});
+    sigCanvas.addEventListener('mouseup', function () { sigDirty = true; });
+    sigCanvas.addEventListener('touchend', function () { sigDirty = true; });
+    var clearBtn = sigCanvas.parentElement.querySelector('.sig-clear');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function () { sigDirty = false; });
+    }
+  }
+
+  form.addEventListener('click', function (e) {
+    var next = e.target.closest('[data-step-next]');
+    if (!next) return;
+    var steps = Array.prototype.slice.call(form.querySelectorAll('.fstep'));
+    var currentStep = steps.find(function (s) { return !s.hidden; });
+    if (!currentStep) return;
+    if (currentStep.querySelector('canvas.sigpad') && !sigDirty) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      var wrap = sigCanvas.closest('.field');
+      if (wrap) wrap.classList.add('invalid');
+      sigCanvas.parentElement.style.borderColor = '#d94444';
+      return;
+    }
+  }, true);
+
+  form.addEventListener('mec-form-submit', function () {
+    var sigData = sigCanvas ? sigCanvas.toDataURL('image/png') : '';
+    var inputs = form.querySelectorAll('.fstep:last-of-type input');
+    var legalName = inputs[0] ? inputs[0].value : '';
+    var sigDate = inputs[1] ? inputs[1].value : '';
+
+    var checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    window.MEC.supabaseInsert('consent_submissions', {
+      hipaa_acknowledged: checkboxes[0] ? checkboxes[0].checked : false,
+      treatment_consented: checkboxes[1] ? checkboxes[1].checked : false,
+      financial_accepted: checkboxes[2] ? checkboxes[2].checked : false,
+      legal_name: legalName,
+      signature_date: sigDate || new Date().toISOString().split('T')[0],
+      signature_data: sigData
+    }).catch(function (err) { console.error('Consent save error:', err); });
+  });
+})();
+</script>
 </body>
 </html>

@@ -45,7 +45,7 @@
       <div class="ref-form-card">
         <h3 style="font-size:22px" data-en="Provider referral form" data-es="Formulario de referencia">Provider referral form</h3>
         <p style="color:var(--slate);font-size:14px;margin-top:6px" data-en="All fields are encrypted and HIPAA-compliant." data-es="Todos los campos están encriptados y cumplen con HIPAA.">All fields are encrypted and HIPAA-compliant.</p>
-        <form class="mform" onsubmit="return false" style="margin-top:22px">
+        <form class="mform" style="margin-top:22px">
           <div class="fsteps-wrap">
             <div class="fstep">
               <div class="fgrid">
@@ -82,7 +82,30 @@
 </section>
 
 <div data-footer></div>
+<script src="assets/supabase.js"></script>
 <script src="assets/site.js"></script>
 <script src="assets/footer.js"></script>
+<script>
+document.querySelector('.mform').addEventListener('mec-form-submit', function () {
+  var form = this;
+  var inputs = form.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]');
+  var textarea = form.querySelector('textarea');
+  var radios = form.querySelectorAll('input[name="urg"]');
+  var urgency = 'routine';
+  radios.forEach(function (r) {
+    if (r.checked) urgency = r.closest('.choice').querySelector('b').getAttribute('data-en').toLowerCase();
+  });
+  window.MEC.supabaseInsert('referral_submissions', {
+    provider_name: inputs[0] ? inputs[0].value : '',
+    practice: inputs[1] ? inputs[1].value : null,
+    provider_phone: inputs[2] ? inputs[2].value : '',
+    provider_email: inputs[3] ? inputs[3].value : '',
+    patient_name: inputs[4] ? inputs[4].value : '',
+    patient_phone: inputs[5] ? inputs[5].value : null,
+    reason: textarea ? textarea.value : '',
+    urgency: urgency
+  }).catch(function (err) { console.error('Referral save error:', err); });
+});
+</script>
 </body>
 </html>

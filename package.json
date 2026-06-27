@@ -1,0 +1,13 @@
+{
+  "name": "mec-eye-specialists",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite site",
+    "build": "vite build site",
+    "preview": "vite preview site"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}

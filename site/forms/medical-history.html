@@ -132,7 +132,48 @@
 </section>
 
 <div data-footer></div>
+<script src="../assets/supabase.js"></script>
 <script src="../assets/site.js"></script>
 <script src="../assets/footer.js"></script>
+<script>
+document.querySelector('.mform').addEventListener('mec-form-submit', function () {
+  var form = this;
+  function getChecked(stepIdx, label) {
+    var steps = form.querySelectorAll('.fstep');
+    var step = steps[stepIdx];
+    if (!step) return [];
+    var groups = step.querySelectorAll('.choices');
+    for (var i = 0; i < groups.length; i++) {
+      var prev = groups[i].previousElementSibling || groups[i].closest('.field').querySelector('label');
+      if (prev && (prev.getAttribute('data-en') || prev.textContent || '').indexOf(label) !== -1) {
+        var checked = [];
+        groups[i].querySelectorAll('input:checked').forEach(function (cb) {
+          checked.push(cb.closest('.choice').querySelector('b').getAttribute('data-en'));
+        });
+        return checked;
+      }
+    }
+    return [];
+  }
+
+  var reason = form.querySelector('textarea[required]');
+  var selects = form.querySelectorAll('select');
+  var textareas = form.querySelectorAll('textarea');
+
+  window.MEC.supabaseInsert('medical_history', {
+    visit_reason: reason ? reason.value : '',
+    symptoms: JSON.stringify(getChecked(0, 'experiencing')),
+    wears_correction: selects[0] ? selects[0].value : null,
+    last_eye_exam: selects[1] ? selects[1].value : null,
+    eye_diagnoses: JSON.stringify(getChecked(1, 'diagnosed')),
+    eye_surgeries: textareas[1] ? textareas[1].value : null,
+    family_history: JSON.stringify(getChecked(1, 'Family')),
+    health_conditions: JSON.stringify(getChecked(2, 'conditions')),
+    medications: textareas[2] ? textareas[2].value : null,
+    drug_allergies: form.querySelector('input[type="text"][data-en-ph]') ? form.querySelector('input[type="text"][data-en-ph]').value : null,
+    smoker: selects[2] ? selects[2].value : null
+  }).catch(function (err) { console.error('Medical history save error:', err); });
+});
+</script>
 </body>
 </html>

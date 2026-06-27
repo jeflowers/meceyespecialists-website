@@ -117,17 +117,58 @@
 </section>
 
 <div data-footer></div>
+<script src="../assets/supabase.js"></script>
 <script src="../assets/site.js"></script>
 <script src="../assets/footer.js"></script>
 <script>
-  document.querySelectorAll('[data-upload]').forEach(function(d){
-    d.addEventListener('click', function(){
-      d.classList.add('filled');
-      var b = d.querySelector('b'); var s = d.querySelector('span');
-      var lang = document.documentElement.getAttribute('lang') || 'en';
-      s.textContent = lang === 'es' ? '✓ Imagen cargada' : '✓ Image uploaded';
+(function () {
+  var uploadState = { front: false, back: false };
+
+  document.querySelectorAll('[data-upload]').forEach(function (d, idx) {
+    var fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
+    d.appendChild(fileInput);
+
+    d.addEventListener('click', function () { fileInput.click(); });
+    fileInput.addEventListener('change', function () {
+      if (fileInput.files.length > 0) {
+        d.classList.add('filled');
+        var s = d.querySelector('span');
+        var lang = document.documentElement.getAttribute('lang') || 'en';
+        s.textContent = lang === 'es' ? '✓ ' + fileInput.files[0].name : '✓ ' + fileInput.files[0].name;
+        uploadState[idx === 0 ? 'front' : 'back'] = true;
+      }
     });
   });
+
+  document.querySelector('.mform').addEventListener('mec-form-submit', function () {
+    var form = this;
+    var inputs = form.querySelectorAll('.fstep input[type="text"], .fstep select');
+    var checkboxes = form.querySelectorAll('.fstep:nth-child(2) .choices input[type="checkbox"]');
+    var hasMedicare = checkboxes[0] ? checkboxes[0].checked : false;
+    var hasMedicaid = checkboxes[1] ? checkboxes[1].checked : false;
+    var radios = form.querySelectorAll('input[name="ph"]');
+    var isPolicyholder = radios[0] ? radios[0].checked : true;
+
+    window.MEC.supabaseInsert('insurance_submissions', {
+      insurance_company: inputs[0] ? inputs[0].value : '',
+      member_id: inputs[1] ? inputs[1].value : '',
+      group_number: inputs[2] ? inputs[2].value : null,
+      is_policyholder: isPolicyholder,
+      policyholder_name: inputs[3] ? inputs[3].value : null,
+      policyholder_relationship: inputs[4] ? inputs[4].value : null,
+      has_medicare: hasMedicare,
+      has_medicaid: hasMedicaid,
+      medicare_medicaid_id: inputs[5] ? inputs[5].value : null,
+      secondary_company: inputs[6] ? inputs[6].value : null,
+      secondary_member_id: inputs[7] ? inputs[7].value : null,
+      card_front_uploaded: uploadState.front,
+      card_back_uploaded: uploadState.back
+    }).catch(function (err) { console.error('Insurance save error:', err); });
+  });
+})();
 </script>
 </body>
 </html>
