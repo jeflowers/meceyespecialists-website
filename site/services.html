@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — MEC Eye Specialists</title>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .svc-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,5vw,72px); align-items: center; padding-block: clamp(40px,6vw,72px); }
+  .svc-row:nth-child(even) .svc-media { order: 2; }
+  @media (max-width: 840px){ .svc-row { grid-template-columns: 1fr; } .svc-row:nth-child(even) .svc-media { order: 0; } }
+  .svc-media { aspect-ratio: 5/4; border-radius: var(--radius-lg); position: relative; overflow: hidden; background: linear-gradient(155deg, var(--ink), var(--teal-deep)); box-shadow: var(--shadow-lg); }
+  .svc-media .ph { position: absolute; inset: 0; display: grid; place-items: center; gap: 10px; color: rgba(255,255,255,.55); background: radial-gradient(90% 80% at 18% 12%, rgba(226,154,60,.36), transparent 52%), radial-gradient(90% 80% at 92% 100%, rgba(63,180,189,.42), transparent 55%); }
+  .svc-media .ph svg { width: 56px; height: 56px; opacity:.85; } .svc-media .ph span { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+  .svc-row h2 { font-size: clamp(26px,3.4vw,38px); margin-top: 14px; }
+  .svc-row p { color: var(--slate); margin-top: 16px; font-size: 16px; }
+  .svc-row ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 11px; }
+  .svc-row ul li { display: flex; gap: 11px; align-items: flex-start; font-size: 15px; color: var(--ink-text); }
+  .svc-row ul li svg { width: 19px; height: 19px; color: var(--teal); flex: none; margin-top: 2px; }
+  .insurance-band .grid { gap: 14px; }
+  .ins-pill { display:flex; align-items:center; gap:12px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px 20px; font-weight:600; color:var(--ink); }
+  .ins-pill svg { width:24px; height:24px; color:var(--teal); flex:none; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="tb-left">
+      <a href="tel:8442115462"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(844) 211-5462</a>
+      <a href="#" data-en="Mon–Fri · 8am–5pm" data-es="Lun–Vie · 8am–5pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Fri · 8am–5pm</a>
+    </div>
+    <a class="tb-portal" href="patients.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</span></a><div class="lang-switch" role="group"><button data-lang="en" class="active">EN</button><button data-lang="es">ES</button></div>
+  </div>
+</div>
+<header class="nav">
+  <div class="container">
+    <a class="brand" href="index.html"><span class="mark"><span>M</span></span><span><b>MEC</b><small>Eye Specialists</small></span></a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="services.html" data-page="services.html" data-en="Services" data-es="Servicios">Services</a>
+      <a href="doctors.html" data-page="doctors.html" data-en="Our Doctors" data-es="Doctores">Our Doctors</a>
+      
+      <a href="patients.html" data-page="patients.html" data-en="For Patients" data-es="Pacientes">For Patients</a>
+      <a href="referrals.html" data-page="referrals.html" data-en="Referrals" data-es="Referencias">Referrals</a>
+      <a href="contact.html" data-page="contact.html" data-en="Contact" data-es="Contacto">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="forms/registration.html" class="btn btn-primary" data-en="Request Appointment" data-es="Solicitar Cita">Request Appointment</a>
+      <button class="nav-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html" data-en="Home" data-es="Inicio">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg><span data-en="Services" data-es="Servicios">Services</span></div>
+    <span class="eyebrow on-dark" style="margin-top:18px" data-en="Comprehensive Care" data-es="Atención Integral">Comprehensive Care</span>
+    <h1 data-en="Specialized eye care for every stage of life" data-es="Cuidado ocular especializado para cada etapa de la vida">Specialized eye care for every stage of life</h1>
+    <p class="lead" data-en="Our board-certified ophthalmologists provide medical and surgical treatment across the full spectrum of eye conditions — using advanced diagnostics and a gentle, patient-first approach." data-es="Nuestros oftalmólogos certificados brindan tratamiento médico y quirúrgico en todo el espectro de afecciones oculares, con diagnósticos avanzados y un enfoque centrado en el paciente.">Our board-certified ophthalmologists provide medical and surgical treatment across the full spectrum of eye conditions — using advanced diagnostics and a gentle, patient-first approach.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-block:clamp(24px,3vw,40px)">
+  <div class="container">
+
+    <div class="svc-row" id="cataract">
+      <div class="svc-media"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3.2"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg><span data-en="Procedure photo" data-es="Foto del procedimiento">Procedure photo</span></div></div>
+      <div>
+        <span class="eyebrow" data-en="Surgical" data-es="Quirúrgico">Surgical</span>
+        <h2 data-en="Cataract Surgery" data-es="Cirugía de Cataratas">Cataract Surgery</h2>
+        <p data-en="Advanced microsurgical techniques to remove cataracts and restore clear vision. Our surgeons use premium intraocular lenses to help reduce dependence on glasses." data-es="Técnicas microquirúrgicas avanzadas para remover cataratas y restaurar la visión clara. Nuestros cirujanos usan lentes intraoculares premium para reducir la dependencia de las gafas.">Advanced microsurgical techniques to remove cataracts and restore clear vision. Our surgeons use premium intraocular lenses to help reduce dependence on glasses.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Premium & multifocal lens options" data-es="Opciones de lentes premium y multifocales">Premium &amp; multifocal lens options</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Minimally invasive, quick recovery" data-es="Mínimamente invasiva, recuperación rápida">Minimally invasive, quick recovery</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Personalized lens consultation" data-es="Consulta de lentes personalizada">Personalized lens consultation</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc-row" id="glaucoma">
+      <div class="svc-media"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/></svg><span data-en="Diagnostic imaging" data-es="Imagen diagnóstica">Diagnostic imaging</span></div></div>
+      <div>
+        <span class="eyebrow" data-en="Medical" data-es="Médico">Medical</span>
+        <h2 data-en="Glaucoma Management" data-es="Manejo del Glaucoma">Glaucoma Management</h2>
+        <p data-en="Comprehensive diagnosis and treatment of glaucoma using the latest medications, laser therapy, and surgical options. Early detection and ongoing monitoring help preserve your vision." data-es="Diagnóstico y tratamiento integral del glaucoma con los medicamentos más recientes, terapia láser y opciones quirúrgicas. La detección temprana y el monitoreo continuo ayudan a preservar tu visión.">Comprehensive diagnosis and treatment of glaucoma using the latest medications, laser therapy, and surgical options. Early detection and ongoing monitoring help preserve your vision.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Early detection screening" data-es="Detección temprana">Early detection screening</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Laser & medication therapy" data-es="Terapia con láser y medicamentos">Laser &amp; medication therapy</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Long-term monitoring plans" data-es="Planes de monitoreo a largo plazo">Long-term monitoring plans</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc-row" id="retina">
+      <div class="svc-media"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg><span data-en="Retinal scan" data-es="Escaneo de retina">Retinal scan</span></div></div>
+      <div>
+        <span class="eyebrow" data-en="Specialty" data-es="Especialidad">Specialty</span>
+        <h2 data-en="Retinal Disease Treatment" data-es="Tratamiento de Enfermedades de la Retina">Retinal Disease Treatment</h2>
+        <p data-en="Expert care for diabetic retinopathy, macular degeneration, and other retinal conditions. We offer advanced treatments including injections and laser therapy." data-es="Atención experta para retinopatía diabética, degeneración macular y otras afecciones de la retina. Ofrecemos tratamientos avanzados que incluyen inyecciones y terapia láser.">Expert care for diabetic retinopathy, macular degeneration, and other retinal conditions. We offer advanced treatments including injections and laser therapy.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Diabetic retinopathy care" data-es="Cuidado de retinopatía diabética">Diabetic retinopathy care</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Macular degeneration treatment" data-es="Tratamiento de degeneración macular">Macular degeneration treatment</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Intravitreal injections & laser" data-es="Inyecciones intravítreas y láser">Intravitreal injections &amp; laser</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc-row" id="exams">
+      <div class="svc-media"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3.2"/></svg><span data-en="Exam room" data-es="Sala de examen">Exam room</span></div></div>
+      <div>
+        <span class="eyebrow" data-en="Routine" data-es="Rutina">Routine</span>
+        <h2 data-en="Comprehensive Eye Exams" data-es="Exámenes Oculares Completos">Comprehensive Eye Exams</h2>
+        <p data-en="Thorough evaluations to assess your vision and eye health. Regular exams help detect conditions early when treatment is most effective." data-es="Evaluaciones exhaustivas para evaluar tu visión y salud ocular. Los exámenes regulares ayudan a detectar afecciones temprano, cuando el tratamiento es más eficaz.">Thorough evaluations to assess your vision and eye health. Regular exams help detect conditions early when treatment is most effective.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Full vision & eye-health assessment" data-es="Evaluación completa de visión y salud ocular">Full vision &amp; eye-health assessment</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Early disease detection" data-es="Detección temprana de enfermedades">Early disease detection</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc-row" id="diabetic">
+      <div class="svc-media"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 2a6 6 0 0 0-6 6c0 4 6 12 6 12s6-8 6-12a6 6 0 0 0-6-6z"/><circle cx="12" cy="8" r="2"/></svg><span data-en="Care coordination" data-es="Coordinación de cuidado">Care coordination</span></div></div>
+      <div>
+        <span class="eyebrow" data-en="Coordinated" data-es="Coordinado">Coordinated</span>
+        <h2 data-en="Diabetic Eye Care" data-es="Cuidado Ocular Diabético">Diabetic Eye Care</h2>
+        <p data-en="Specialized screening and treatment for diabetes-related eye complications. We work closely with your primary care physician to protect your vision." data-es="Detección y tratamiento especializado para complicaciones oculares relacionadas con la diabetes. Trabajamos de cerca con tu médico de cabecera para proteger tu visión.">Specialized screening and treatment for diabetes-related eye complications. We work closely with your primary care physician to protect your vision.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Annual diabetic eye screening" data-es="Examen ocular diabético anual">Annual diabetic eye screening</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Coordinated with your PCP" data-es="Coordinado con tu médico de cabecera">Coordinated with your PCP</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc-row" id="emergency">
+      <div class="svc-media"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5z"/><path d="M12 8v4M12 16h.01"/></svg><span data-en="Urgent care" data-es="Atención urgente">Urgent care</span></div></div>
+      <div>
+        <span class="eyebrow" data-en="Urgent" data-es="Urgente">Urgent</span>
+        <h2 data-en="Emergency Eye Care" data-es="Atención Ocular de Emergencia">Emergency Eye Care</h2>
+        <p data-en="Prompt treatment for eye injuries, sudden vision loss, and other urgent eye conditions. Our doctors provide immediate care when you need it most." data-es="Tratamiento rápido para lesiones oculares, pérdida repentina de la visión y otras afecciones oculares urgentes. Nuestros doctores brindan atención inmediata cuando más lo necesitas.">Prompt treatment for eye injuries, sudden vision loss, and other urgent eye conditions. Our doctors provide immediate care when you need it most.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Same-day urgent appointments" data-es="Citas urgentes el mismo día">Same-day urgent appointments</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-en="Injury & sudden vision loss care" data-es="Atención de lesiones y pérdida de visión">Injury &amp; sudden vision loss care</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INSURANCE -->
+<section class="section bg-mist insurance-band">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" data-en="Coverage" data-es="Cobertura">Coverage</span>
+      <h2 data-en="Insurance & payment" data-es="Seguro y pago">Insurance &amp; payment</h2>
+      <p class="lead" data-en="We accept Medicare and Medicaid along with most major vision and medical insurance plans. Not sure if you're covered? Our team is happy to verify your benefits." data-es="Aceptamos Medicare y Medicaid junto con la mayoría de los planes de seguro médico y de visión. ¿No estás seguro de tu cobertura? Nuestro equipo con gusto verifica tus beneficios.">We accept Medicare and Medicaid along with most major vision and medical insurance plans. Not sure if you're covered? Our team is happy to verify your benefits.</p>
+    </div>
+    <div class="grid g-4">
+      <div class="ins-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Medicare</div>
+      <div class="ins-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Medicaid</div>
+      <div class="ins-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span data-en="Most medical plans" data-es="Mayoría de planes médicos">Most medical plans</span></div>
+      <div class="ins-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span data-en="Vision plans" data-es="Planes de visión">Vision plans</span></div>
+    </div>
+    <div style="text-align:center;margin-top:40px"><a href="forms/insurance.html" class="btn btn-primary" data-en="Submit Insurance Information" data-es="Enviar Información del Seguro">Submit Insurance Information</a></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center">
+  <div class="container">
+    <h2 style="font-size:clamp(28px,4vw,44px)" data-en="Have questions about your eyes?" data-es="¿Tienes preguntas sobre tus ojos?">Have questions about your eyes?</h2>
+    <p class="lead" style="margin:16px auto 0;max-width:520px" data-en="Schedule a visit and let our team take a closer look." data-es="Agenda una visita y deja que nuestro equipo te examine de cerca.">Schedule a visit and let our team take a closer look.</p>
+    <div style="display:flex;gap:14px;justify-content:center;margin-top:30px;flex-wrap:wrap">
+      <a href="forms/registration.html" class="btn btn-primary btn-lg" data-en="Request an Appointment" data-es="Solicitar una Cita">Request an Appointment</a>
+      <a href="tel:8442115462" class="btn btn-ghost btn-lg" data-en="Call (844) 211-5462" data-es="Llama (844) 211-5462">Call (844) 211-5462</a>
+    </div>
+  </div>
+</section>
+
+<div data-footer></div>
+<script src="assets/site.js"></script>
+<script src="assets/footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referrals — MEC Eye Specialists</title>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .ref-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  @media (max-width: 820px){ .ref-grid { grid-template-columns: 1fr; } }
+  .ref-step { display:flex; gap:16px; align-items:flex-start; padding: 18px 0; }
+  .ref-step .num { width:38px; height:38px; border-radius:50%; background: var(--aqua-soft); color: var(--teal-deep); display:grid; place-items:center; font-weight:800; flex:none; font-size:16px; }
+  .ref-step h4 { font-family:var(--sans); font-size:16.5px; font-weight:700; color:var(--ink); }
+  .ref-step p { font-size:14.5px; color:var(--slate); margin-top:4px; }
+  .ref-form-card { background:#fff; border:1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(24px,3vw,38px); box-shadow: var(--shadow); }
+</style>
+</head>
+<body>
+<div class="topbar"><div class="container"><div class="tb-left"><a href="tel:8442115462"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(844) 211-5462</a><a href="#" data-en="Mon–Fri · 8am–5pm" data-es="Lun–Vie · 8am–5pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Fri · 8am–5pm</a></div><a class="tb-portal" href="patients.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</span></a><div class="lang-switch"><button data-lang="en" class="active">EN</button><button data-lang="es">ES</button></div></div></div>
+<header class="nav"><div class="container"><a class="brand" href="index.html"><span class="mark"><span>M</span></span><span><b>MEC</b><small>Eye Specialists</small></span></a><nav class="navlinks" aria-label="Primary"><a href="services.html" data-page="services.html" data-en="Services" data-es="Servicios">Services</a><a href="doctors.html" data-page="doctors.html" data-en="Our Doctors" data-es="Doctores">Our Doctors</a><a href="patients.html" data-page="patients.html" data-en="For Patients" data-es="Pacientes">For Patients</a><a href="referrals.html" data-page="referrals.html" data-en="Referrals" data-es="Referencias">Referrals</a><a href="contact.html" data-page="contact.html" data-en="Contact" data-es="Contacto">Contact</a></nav><div class="nav-cta"><a href="forms/registration.html" class="btn btn-primary" data-en="Request Appointment" data-es="Solicitar Cita">Request Appointment</a><button class="nav-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></div></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html" data-en="Home" data-es="Inicio">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg><span data-en="Referrals" data-es="Referencias">Referrals</span></div>
+    <span class="eyebrow on-dark" style="margin-top:18px" data-en="For Referring Providers" data-es="Para Proveedores que Refieren">For Referring Providers</span>
+    <h1 data-en="Refer a patient to MEC" data-es="Refiere un paciente a MEC">Refer a patient to MEC</h1>
+    <p class="lead" data-en="We make it simple for primary care and optometry partners to connect their patients with specialty eye care. Submit a secure referral in minutes." data-es="Facilitamos que los socios de atención primaria y optometría conecten a sus pacientes con cuidado ocular especializado. Envía una referencia segura en minutos.">We make it simple for primary care and optometry partners to connect their patients with specialty eye care. Submit a secure referral in minutes.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ref-grid">
+      <div>
+        <span class="eyebrow" data-en="How It Works" data-es="Cómo Funciona">How It Works</span>
+        <h2 style="font-size:clamp(26px,3.2vw,36px);margin-top:14px" data-en="A smooth handoff for your patients" data-es="Una transición fluida para tus pacientes">A smooth handoff for your patients</h2>
+        <div style="margin-top:18px">
+          <div class="ref-step"><div class="num">1</div><div><h4 data-en="Submit the referral" data-es="Envía la referencia">Submit the referral</h4><p data-en="Complete the secure form with your patient's information and the reason for referral." data-es="Completa el formulario seguro con la información de tu paciente y el motivo de la referencia.">Complete the secure form with your patient's information and the reason for referral.</p></div></div>
+          <div class="ref-step"><div class="num">2</div><div><h4 data-en="We reach out promptly" data-es="Te contactamos pronto">We reach out promptly</h4><p data-en="Our team contacts the patient to schedule, usually within one business day." data-es="Nuestro equipo contacta al paciente para agendar, normalmente en un día hábil.">Our team contacts the patient to schedule, usually within one business day.</p></div></div>
+          <div class="ref-step"><div class="num">3</div><div><h4 data-en="You stay informed" data-es="Te mantenemos informado">You stay informed</h4><p data-en="We send consult notes and findings back to you to keep care coordinated." data-es="Te enviamos las notas de consulta y hallazgos para mantener la atención coordinada.">We send consult notes and findings back to you to keep care coordinated.</p></div></div>
+        </div>
+        <div class="aside-help" style="margin-top:22px"><h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span data-en="Prefer to fax or email?" data-es="¿Prefieres fax o correo?">Prefer to fax or email?</span></h4><p data-en="Download our referral form (PDF) and fax to (844) 211-5460, or email referrals@meceyespecialists.com." data-es="Descarga nuestro formulario de referencia (PDF) y envíalo por fax al (844) 211-5460, o por correo a referrals@meceyespecialists.com.">Download our referral form (PDF) and fax to (844) 211-5460, or email referrals@meceyespecialists.com.</p></div>
+      </div>
+
+      <div class="ref-form-card">
+        <h3 style="font-size:22px" data-en="Provider referral form" data-es="Formulario de referencia">Provider referral form</h3>
+        <p style="color:var(--slate);font-size:14px;margin-top:6px" data-en="All fields are encrypted and HIPAA-compliant." data-es="Todos los campos están encriptados y cumplen con HIPAA.">All fields are encrypted and HIPAA-compliant.</p>
+        <form class="mform" onsubmit="return false" style="margin-top:22px">
+          <div class="fsteps-wrap">
+            <div class="fstep">
+              <div class="fgrid">
+                <div class="fieldset-title" data-en="Referring provider" data-es="Proveedor que refiere">Referring provider</div>
+                <div class="field"><label data-en="Provider name" data-es="Nombre del proveedor">Provider name <span class="req">*</span></label><input required type="text"><div class="err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span data-en="Required" data-es="Requerido">Required</span></div></div>
+                <div class="field"><label data-en="Practice / clinic" data-es="Práctica / clínica">Practice / clinic</label><input type="text"></div>
+                <div class="field"><label data-en="Phone" data-es="Teléfono">Phone <span class="req">*</span></label><input required type="tel"><div class="err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span data-en="Required" data-es="Requerido">Required</span></div></div>
+                <div class="field"><label data-en="Email" data-es="Correo">Email <span class="req">*</span></label><input required type="email"><div class="err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span data-en="Valid email required" data-es="Correo válido requerido">Valid email required</span></div></div>
+                <div class="fieldset-title" data-en="Patient & reason" data-es="Paciente y motivo">Patient &amp; reason</div>
+                <div class="field"><label data-en="Patient name" data-es="Nombre del paciente">Patient name <span class="req">*</span></label><input required type="text"><div class="err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span data-en="Required" data-es="Requerido">Required</span></div></div>
+                <div class="field"><label data-en="Patient phone" data-es="Teléfono del paciente">Patient phone</label><input type="tel"></div>
+                <div class="field col-2"><label data-en="Reason for referral" data-es="Motivo de la referencia">Reason for referral <span class="req">*</span></label><textarea required data-en-ph="e.g. cataract evaluation, diabetic retinopathy screening, glaucoma management…" data-es-ph="ej. evaluación de cataratas, detección de retinopatía diabética…"></textarea><div class="err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span data-en="Required" data-es="Requerido">Required</span></div></div>
+                <div class="field col-2"><label data-en="Urgency" data-es="Urgencia">Urgency</label>
+                  <div class="choices cols-3">
+                    <label class="choice"><input type="radio" name="urg" checked><span class="ct"><b data-en="Routine" data-es="Rutina">Routine</b></span></label>
+                    <label class="choice"><input type="radio" name="urg"><span class="ct"><b data-en="Soon" data-es="Pronto">Soon</b></span></label>
+                    <label class="choice"><input type="radio" name="urg"><span class="ct"><b data-en="Urgent" data-es="Urgente">Urgent</b></span></label>
+                  </div>
+                </div>
+              </div>
+              <div class="fnav"><span class="spacer"></span><button class="btn btn-primary" data-step-next data-en="Submit Referral" data-es="Enviar Referencia">Submit Referral</button></div>
+            </div>
+          </div>
+          <div class="fdone" hidden>
+            <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h2 data-en="Referral received" data-es="Referencia recibida">Referral received</h2>
+            <p data-en="Thank you. Our team will reach out to your patient within one business day and keep you updated on their care." data-es="Gracias. Nuestro equipo contactará a tu paciente en un día hábil y te mantendrá al tanto de su atención.">Thank you. Our team will reach out to your patient within one business day and keep you updated on their care.</p>
+            <div class="actions"><a href="index.html" class="btn btn-ghost" data-en="Back to Home" data-es="Volver al Inicio">Back to Home</a></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-footer></div>
+<script src="assets/site.js"></script>
+<script src="assets/footer.js"></script>
+</body>
+</html>

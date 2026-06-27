@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Patients — MEC Eye Specialists</title>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .portal-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; align-items: start; }
+  @media (max-width: 860px){ .portal-grid { grid-template-columns: 1fr; } }
+  .portal-card { background: linear-gradient(140deg, var(--ink), var(--teal-deep)); color:#fff; border-radius: var(--radius-lg); padding: clamp(28px,4vw,44px); position: relative; overflow: hidden; }
+  .portal-card::after { content:""; position:absolute; inset:0; opacity:.55; background: radial-gradient(70% 110% at 92% 8%, rgba(226,154,60,.32), transparent 55%); }
+  .portal-card > * { position: relative; }
+  .portal-card h2 { color:#fff; font-size: clamp(26px,3.2vw,36px); }
+  .portal-card p { color: rgba(255,255,255,.84); margin-top: 14px; }
+  .portal-form { background: rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); border-radius: var(--radius); padding: 22px; margin-top: 26px; display:grid; gap: 14px; }
+  .portal-form input { background: rgba(255,255,255,.95); border:0; border-radius: 10px; padding: 13px 15px; font-family: inherit; font-size: 15px; }
+  .bill-card { background:#fff; border:1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(24px,3vw,36px); }
+  .bill-card h3 { font-size: 24px; }
+  .quick-links { display:grid; gap: 12px; margin-top: 22px; }
+  .quick-links a { display:flex; align-items:center; gap:14px; padding:16px 18px; border:1px solid var(--line); border-radius: 12px; transition:.18s; font-weight:600; color:var(--ink); }
+  .quick-links a:hover { border-color: var(--teal); background: var(--mist); transform: translateX(4px); }
+  .quick-links a svg { width:22px; height:22px; color: var(--teal); flex:none; }
+  .quick-links a .ar { margin-left:auto; color: var(--slate-2); }
+  .prep-grid .card .ico { background: linear-gradient(150deg, var(--amber-soft), #fff); color: var(--amber-deep); }
+</style>
+</head>
+<body>
+<div class="topbar"><div class="container"><div class="tb-left"><a href="tel:8442115462"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(844) 211-5462</a><a href="#" data-en="Mon–Fri · 8am–5pm" data-es="Lun–Vie · 8am–5pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Fri · 8am–5pm</a></div><a class="tb-portal" href="patients.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</span></a><div class="lang-switch"><button data-lang="en" class="active">EN</button><button data-lang="es">ES</button></div></div></div>
+<header class="nav"><div class="container"><a class="brand" href="index.html"><span class="mark"><span>M</span></span><span><b>MEC</b><small>Eye Specialists</small></span></a><nav class="navlinks" aria-label="Primary"><a href="services.html" data-page="services.html" data-en="Services" data-es="Servicios">Services</a><a href="doctors.html" data-page="doctors.html" data-en="Our Doctors" data-es="Doctores">Our Doctors</a><a href="patients.html" data-page="patients.html" data-en="For Patients" data-es="Pacientes">For Patients</a><a href="referrals.html" data-page="referrals.html" data-en="Referrals" data-es="Referencias">Referrals</a><a href="contact.html" data-page="contact.html" data-en="Contact" data-es="Contacto">Contact</a></nav><div class="nav-cta"><a href="forms/registration.html" class="btn btn-primary" data-en="Request Appointment" data-es="Solicitar Cita">Request Appointment</a><button class="nav-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></div></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html" data-en="Home" data-es="Inicio">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg><span data-en="For Patients" data-es="Pacientes">For Patients</span></div>
+    <span class="eyebrow on-dark" style="margin-top:18px" data-en="Patient Resources" data-es="Recursos para Pacientes">Patient Resources</span>
+    <h1 data-en="Everything you need, before & after your visit" data-es="Todo lo que necesitas, antes y después de tu visita">Everything you need, before &amp; after your visit</h1>
+    <p class="lead" data-en="Manage appointments, complete your forms, pay your bill, and prepare for your visit — securely and in your language." data-es="Gestiona citas, completa tus formularios, paga tu factura y prepárate para tu visita, de forma segura y en tu idioma.">Manage appointments, complete your forms, pay your bill, and prepare for your visit — securely and in your language.</p>
+  </div>
+</section>
+
+<!-- PORTAL + BILL PAY -->
+<section class="section">
+  <div class="container">
+    <div class="portal-grid">
+      <div class="portal-card">
+        <span class="eyebrow on-dark" data-en="Secure Login" data-es="Acceso Seguro">Secure Login</span>
+        <h2 style="margin-top:12px" data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</h2>
+        <p data-en="View test results, message your care team, request prescription refills, and check upcoming appointments — all in one secure place." data-es="Consulta resultados, comunícate con tu equipo, solicita resurtidos de recetas y revisa próximas citas, todo en un lugar seguro.">View test results, message your care team, request prescription refills, and check upcoming appointments — all in one secure place.</p>
+        <form class="portal-form" onsubmit="return false">
+          <input type="email" placeholder="Email" data-en-ph="Email address" data-es-ph="Correo electrónico" aria-label="Email">
+          <input type="password" placeholder="Password" data-en-ph="Password" data-es-ph="Contraseña" aria-label="Password">
+          <button class="btn btn-amber" type="submit" data-en="Log In to Portal" data-es="Entrar al Portal">Log In to Portal</button>
+          <div class="secure-note" style="color:rgba(255,255,255,.75);margin-top:2px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--amber-soft)"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span data-en="HIPAA-secure & encrypted" data-es="Seguro HIPAA y encriptado">HIPAA-secure &amp; encrypted</span></div>
+        </form>
+      </div>
+
+      <div class="bill-card" id="billpay">
+        <h3 data-en="Quick actions" data-es="Acciones rápidas">Quick actions</h3>
+        <div class="quick-links">
+          <a href="#" data-en="Pay My Bill" data-es="Pagar Mi Factura"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Pay My Bill<span class="ar">→</span></a>
+          <a href="forms/registration.html" data-en="Request an Appointment" data-es="Solicitar una Cita"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Request an Appointment<span class="ar">→</span></a>
+          <a href="forms/registration.html" data-en="Complete New-Patient Forms" data-es="Completar Formularios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Complete New-Patient Forms<span class="ar">→</span></a>
+          <a href="referrals.html" data-en="Refer a Patient" data-es="Referir un Paciente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>Refer a Patient<span class="ar">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW PATIENT FORMS -->
+<section class="section bg-mist">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" data-en="New Patient Forms" data-es="Formularios para Pacientes Nuevos">New Patient Forms</span>
+      <h2 data-en="Complete your paperwork online" data-es="Completa tu papeleo en línea">Complete your paperwork online</h2>
+      <p class="lead" data-en="Save time in the waiting room. Fill these out securely before your appointment — available in English and Spanish." data-es="Ahorra tiempo en la sala de espera. Complétalos de forma segura antes de tu cita, disponibles en inglés y español.">Save time in the waiting room. Fill these out securely before your appointment — available in English and Spanish.</p>
+    </div>
+    <div class="grid g-4 prep-grid">
+      <a class="card" href="forms/registration.html"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div><h3 style="font-size:20px" data-en="Patient Registration" data-es="Registro de Paciente">Patient Registration</h3><p data-en="Your contact details and demographics." data-es="Tus datos de contacto y demográficos.">Your contact details and demographics.</p><span class="more" data-en="Start" data-es="Comenzar">Start <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="card" href="forms/medical-history.html"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg></div><h3 style="font-size:20px" data-en="Medical History" data-es="Historial Médico">Medical History</h3><p data-en="Conditions, medications, and allergies." data-es="Afecciones, medicamentos y alergias.">Conditions, medications, and allergies.</p><span class="more" data-en="Start" data-es="Comenzar">Start <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="card" href="forms/insurance.html"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><h3 style="font-size:20px" data-en="Insurance Information" data-es="Información del Seguro">Insurance Information</h3><p data-en="Coverage details and card upload." data-es="Detalles de cobertura y carga de tarjeta.">Coverage details and card upload.</p><span class="more" data-en="Start" data-es="Comenzar">Start <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="card" href="forms/consent.html"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h3 style="font-size:20px" data-en="Consent Forms" data-es="Formularios de Consentimiento">Consent Forms</h3><p data-en="HIPAA notice and treatment consent." data-es="Aviso HIPAA y consentimiento de tratamiento.">HIPAA notice and treatment consent.</p><span class="more" data-en="Start" data-es="Comenzar">Start <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container" style="max-width:860px">
+    <div class="section-head center"><span class="eyebrow" style="justify-content:center" data-en="Good to Know" data-es="Bueno Saber">Good to Know</span><h2 data-en="Frequently asked questions" data-es="Preguntas frecuentes">Frequently asked questions</h2></div>
+    <div class="acc">
+      <div class="acc-item"><button class="acc-q"><span data-en="What should I bring to my first appointment?" data-es="¿Qué debo traer a mi primera cita?">What should I bring to my first appointment?</span><span class="pl"></span></button><div class="acc-a"><p data-en="Please bring a photo ID, your insurance card, a list of current medications, and any glasses or contacts you wear. If you've completed your forms online, you're all set — otherwise arrive 15 minutes early." data-es="Por favor trae una identificación con foto, tu tarjeta de seguro, una lista de medicamentos actuales y cualquier gafas o lentes de contacto que uses. Si completaste tus formularios en línea, ya estás listo; de lo contrario, llega 15 minutos antes.">Please bring a photo ID, your insurance card, a list of current medications, and any glasses or contacts you wear. If you've completed your forms online, you're all set — otherwise arrive 15 minutes early.</p></div></div>
+      <div class="acc-item"><button class="acc-q"><span data-en="Will my eyes be dilated?" data-es="¿Me dilatarán los ojos?">Will my eyes be dilated?</span><span class="pl"></span></button><div class="acc-a"><p data-en="Many comprehensive exams include dilation, which can leave your vision blurry and light-sensitive for a few hours. We recommend bringing sunglasses and arranging for someone to drive you home, just in case." data-es="Muchos exámenes completos incluyen dilatación, que puede dejar tu visión borrosa y sensible a la luz por unas horas. Recomendamos traer gafas de sol y que alguien te lleve a casa, por si acaso.">Many comprehensive exams include dilation, which can leave your vision blurry and light-sensitive for a few hours. We recommend bringing sunglasses and arranging for someone to drive you home, just in case.</p></div></div>
+      <div class="acc-item"><button class="acc-q"><span data-en="Do you accept Medicare and Medicaid?" data-es="¿Aceptan Medicare y Medicaid?">Do you accept Medicare and Medicaid?</span><span class="pl"></span></button><div class="acc-a"><p data-en="Yes. We accept Medicare and Medicaid along with most major medical and vision plans. If you're unsure about your coverage, call us and our team will verify your benefits before your visit." data-es="Sí. Aceptamos Medicare y Medicaid junto con la mayoría de los planes médicos y de visión. Si no estás seguro de tu cobertura, llámanos y nuestro equipo verificará tus beneficios antes de tu visita.">Yes. We accept Medicare and Medicaid along with most major medical and vision plans. If you're unsure about your coverage, call us and our team will verify your benefits before your visit.</p></div></div>
+      <div class="acc-item"><button class="acc-q"><span data-en="Is the team able to help me in Spanish?" data-es="¿El equipo puede ayudarme en español?">Is the team able to help me in Spanish?</span><span class="pl"></span></button><div class="acc-a"><p data-en="Absolutely. Our doctors and front-office team are bilingual, and all of our patient forms are available in English and Spanish. Use the EN / ES switch at the top of any page." data-es="Por supuesto. Nuestros doctores y personal de recepción son bilingües, y todos nuestros formularios están disponibles en inglés y español. Usa el botón EN / ES en la parte superior de cualquier página.">Absolutely. Our doctors and front-office team are bilingual, and all of our patient forms are available in English and Spanish. Use the EN / ES switch at the top of any page.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div data-footer></div>
+<script src="assets/site.js"></script>
+<script src="assets/footer.js"></script>
+</body>
+</html>

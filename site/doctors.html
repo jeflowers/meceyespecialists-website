@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Doctors — MEC Eye Specialists</title>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .docp { display: grid; grid-template-columns: 320px 1fr; gap: clamp(28px,4vw,52px); align-items: start; padding-block: clamp(40px,5vw,64px); border-bottom: 1px solid var(--line-soft); }
+  .docp:last-child { border-bottom: 0; }
+  @media (max-width: 760px){ .docp { grid-template-columns: 1fr; } }
+  .docp-photo { aspect-ratio: 1/1.18; border-radius: var(--radius-lg); background: var(--mist-2); border: 1px solid var(--line); position: relative; overflow: hidden; box-shadow: var(--shadow); }
+  .docp-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .docp-photo .role-tag { position: absolute; left: 14px; bottom: 14px; background: rgba(255,255,255,.94); color: var(--teal-deep); font-size: 11.5px; font-weight: 800; letter-spacing: .04em; padding: 6px 13px; border-radius: 999px; text-transform: uppercase; }
+  @media (max-width: 760px){ .docp-photo { max-width: 340px; } }
+  .docp h2 { font-size: clamp(26px,3.2vw,36px); }
+  .docp .spec-line { color: var(--teal); font-weight: 700; font-size: 15px; margin-top: 6px; letter-spacing:.01em; }
+  .docp p.bio { color: var(--slate); margin-top: 16px; font-size: 15.5px; max-width: 660px; }
+  .docp blockquote { margin: 18px 0 0; padding-left: 18px; border-left: 3px solid var(--amber); font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink); max-width: 620px; }
+  .docp .tags { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 22px; }
+  .cred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 40px; margin-top: 28px; }
+  @media (max-width: 620px){ .cred-grid { grid-template-columns: 1fr; } }
+  .cred-block h4 { font-family: var(--sans); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--slate); margin-bottom: 12px; display:flex; align-items:center; gap:8px; }
+  .cred-block h4 svg { width: 15px; height: 15px; color: var(--teal); }
+  .cred-block ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+  .cred-block li { font-size: 14px; color: var(--ink-text); line-height: 1.5; padding-left: 16px; position: relative; }
+  .cred-block li::before { content:""; position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background: var(--aqua); }
+  .video-link { display:inline-flex; align-items:center; gap:9px; margin-top:18px; color: var(--teal); font-weight:700; font-size:14.5px; }
+  .video-link svg { width: 30px; height: 30px; }
+  .video-link:hover { color: var(--teal-deep); }
+  .video-card { display:inline-flex; align-items:center; gap:16px; margin-top:18px; padding:10px 18px 10px 10px; border:1px solid var(--line); border-radius:16px; background:#fff; transition:.2s; }
+  .video-card:hover { border-color: var(--aqua); box-shadow: var(--shadow); transform: translateY(-2px); }
+  .video-card .vc-thumb { width:74px; height:50px; border-radius:10px; flex:none; position:relative; overflow:hidden; background: linear-gradient(135deg, var(--ink), var(--teal-deep)); display:grid; place-items:center; }
+  .video-card .vc-thumb::after { content:""; position:absolute; inset:0; background: radial-gradient(80% 120% at 80% 10%, rgba(226,154,60,.4), transparent 55%); }
+  .video-card .vc-play { position:relative; z-index:1; width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.92); color:var(--teal-deep); display:grid; place-items:center; }
+  .video-card .vc-play svg { width:15px; height:15px; margin-left:2px; }
+  .video-card .vc-meta b { display:block; font-family:var(--sans); font-weight:700; font-size:15px; color:var(--ink); }
+  .video-card .vc-meta span { font-size:12.5px; color:var(--slate); }
+  .video-embed { margin-top:20px; max-width:560px; border-radius:16px; overflow:hidden; background:var(--ink); aspect-ratio:16/9; box-shadow: var(--shadow-lg); }
+  .video-embed iframe { width:100%; height:100%; display:block; border:0; }
+  .video-fallback { display:inline-flex; align-items:center; gap:8px; margin-top:12px; color:var(--teal); font-weight:600; font-size:13.5px; }
+  .video-fallback svg { width:16px; height:16px; }
+  .video-fallback:hover { color:var(--teal-deep); }
+  .flowers-stats { display:flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
+  .flowers-stats .fs { flex: 1; min-width: 150px; background: var(--mist); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .flowers-stats .fs b { display:block; font-family: var(--serif); font-size: clamp(24px,3vw,30px); color: var(--teal-deep); line-height: 1; }
+  .flowers-stats .fs b span { font-size: 16px; }
+  .flowers-stats .fs > span { font-size: 13px; color: var(--slate); margin-top: 8px; display: block; line-height: 1.4; }
+  /* education timeline (Dr. Flowers) */
+  .edu-time { margin-top: 26px; display: grid; gap: 0; }
+  .edu-time .et { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 16px 0; border-top: 1px solid var(--line-soft); }
+  .edu-time .et:first-child { border-top: 0; }
+  @media (max-width: 540px){ .edu-time .et { grid-template-columns: 1fr; gap: 4px; } }
+  .edu-time .yr { font-family: var(--serif); font-size: 15px; color: var(--teal); font-weight: 600; }
+  .edu-time .inst b { display:block; font-family:var(--sans); font-weight:700; color: var(--ink); font-size: 15.5px; }
+  .edu-time .inst span { font-size: 14px; color: var(--slate); }
+  .edu-time .inst .hon { margin-top: 6px; font-size: 12.5px; color: var(--amber-deep); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="topbar"><div class="container"><div class="tb-left"><a href="tel:8442115462"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(844) 211-5462</a><a href="#" data-en="Mon–Fri · 8am–5pm" data-es="Lun–Vie · 8am–5pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Fri · 8am–5pm</a></div><a class="tb-portal" href="patients.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</span></a><div class="lang-switch"><button data-lang="en" class="active">EN</button><button data-lang="es">ES</button></div></div></div>
+<header class="nav"><div class="container"><a class="brand" href="index.html"><span class="mark"><span>M</span></span><span><b>MEC</b><small>Eye Specialists</small></span></a><nav class="navlinks" aria-label="Primary"><a href="services.html" data-page="services.html" data-en="Services" data-es="Servicios">Services</a><a href="doctors.html" data-page="doctors.html" data-en="Our Doctors" data-es="Doctores">Our Doctors</a><a href="patients.html" data-page="patients.html" data-en="For Patients" data-es="Pacientes">For Patients</a><a href="referrals.html" data-page="referrals.html" data-en="Referrals" data-es="Referencias">Referrals</a><a href="contact.html" data-page="contact.html" data-en="Contact" data-es="Contacto">Contact</a></nav><div class="nav-cta"><a href="forms/registration.html" class="btn btn-primary" data-en="Request Appointment" data-es="Solicitar Cita">Request Appointment</a><button class="nav-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></div></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html" data-en="Home" data-es="Inicio">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg><span data-en="Our Doctors" data-es="Doctores">Our Doctors</span></div>
+    <span class="eyebrow on-dark" style="margin-top:18px" data-en="Meet the Team" data-es="Conoce al Equipo">Meet the Team</span>
+    <h1 data-en="The specialists caring for your sight" data-es="Los especialistas que cuidan tu visión">The specialists caring for your sight</h1>
+    <p class="lead" data-en="Since 2001, our physicians and optometrists have cared for communities from Downtown Los Angeles to Long Beach — combining deep expertise with genuine, patient-first attention." data-es="Desde 2001, nuestros médicos y optometristas han atendido a comunidades desde el centro de Los Ángeles hasta Long Beach, combinando profunda experiencia con una atención genuina y centrada en el paciente.">Since 2001, our physicians and optometrists have cared for communities from Downtown Los Angeles to Long Beach — combining deep expertise with genuine, patient-first attention.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-block:clamp(20px,3vw,32px)">
+  <div class="container">
+
+    <!-- KHANNA -->
+    <div class="docp" id="khanna">
+      <div class="docp-photo"><img src="assets/doctors/khanna.png" alt="Dr. Sandeep Khanna"><span class="role-tag" data-en="Founder" data-es="Fundador">Founder</span></div>
+      <div>
+        <h2>Sandeep Khanna, M.D.</h2>
+        <div class="spec-line" data-en="Vitreo-Retinal Surgery · Founder" data-es="Cirugía Vitreorretiniana · Fundador">Vitreo-Retinal Surgery · Founder</div>
+        <p class="bio" data-en="Dr. Khanna founded Mercy Eye Care Medical Group (MEC) in 2001 to provide eye care services in the Mid-Cities region of Los Angeles. MEC now comprises multiple offices from Downtown Los Angeles to Long Beach. He directed the Vitreo-Retinal Services at the MLK Jr. Multi-Service Ambulatory Care Center (MACC), where he earned the “Doctor of the Year” award in 2013. His clinical interests include diabetic retinopathy, age-related macular degeneration, and the management of complex retinal detachments." data-es="El Dr. Khanna fundó Mercy Eye Care Medical Group (MEC) en 2001 para brindar servicios de cuidado ocular en la región Mid-Cities de Los Ángeles. MEC ahora cuenta con múltiples oficinas desde el centro de Los Ángeles hasta Long Beach. Dirigió los Servicios Vitreorretinianos en el MLK Jr. Multi-Service Ambulatory Care Center (MACC), donde recibió el premio “Doctor del Año” en 2013. Sus intereses clínicos incluyen la retinopatía diabética, la degeneración macular relacionada con la edad y el manejo de desprendimientos de retina complejos.">Dr. Khanna founded Mercy Eye Care Medical Group (MEC) in 2001 to provide eye care services in the Mid-Cities region of Los Angeles. MEC now comprises multiple offices from Downtown Los Angeles to Long Beach. He directed the Vitreo-Retinal Services at the MLK Jr. Multi-Service Ambulatory Care Center (MACC), where he earned the “Doctor of the Year” award in 2013. His clinical interests include diabetic retinopathy, age-related macular degeneration, and the management of complex retinal detachments.</p>
+        <div class="tags">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/></svg>Vitreo-Retinal Surgery</span>
+          <span class="pill" data-en="Diabetic Retinopathy" data-es="Retinopatía Diabética">Diabetic Retinopathy</span>
+          <span class="pill" data-en="Macular Degeneration" data-es="Degeneración Macular">Macular Degeneration</span>
+          <span class="pill" data-en="Complex Retinal Detachments" data-es="Desprendimientos Complejos">Complex Retinal Detachments</span>
+        </div>
+        <div class="cred-grid">
+          <div class="cred-block">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg><span data-en="Education & Training" data-es="Educación y Formación">Education &amp; Training</span></h4>
+            <ul>
+              <li>M.D., All India Institute of Medical Sciences (AIIMS), New Delhi</li>
+              <li data-en="Internship, Good Samaritan Regional Medical Center, Phoenix" data-es="Internado, Good Samaritan Regional Medical Center, Phoenix">Internship, Good Samaritan Regional Medical Center, Phoenix</li>
+              <li data-en="Nuclear Medicine, University of California, Los Angeles (UCLA)" data-es="Medicina Nuclear, Universidad de California, Los Ángeles (UCLA)">Nuclear Medicine, University of California, Los Angeles (UCLA)</li>
+              <li data-en="Residency, Ophthalmology, Charles Drew University / UCLA" data-es="Residencia, Oftalmología, Charles Drew University / UCLA">Residency, Ophthalmology, Charles Drew University / UCLA</li>
+              <li data-en="Fellowship, Vitreo-Retinal Diseases & Surgery, Retina Vitreous Associates Medical Group, Beverly Hills" data-es="Subespecialidad, Enfermedades y Cirugía Vitreorretiniana, Retina Vitreous Associates Medical Group, Beverly Hills">Fellowship, Vitreo-Retinal Diseases &amp; Surgery, Retina Vitreous Associates Medical Group, Beverly Hills</li>
+            </ul>
+          </div>
+          <div class="cred-block">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M8 12l2.5 2.5L16 9"/></svg><span data-en="Board Certifications" data-es="Certificaciones">Board Certifications</span></h4>
+            <ul>
+              <li>Diplomate, American Board of Ophthalmology</li>
+              <li>Fellow, American Academy of Ophthalmology</li>
+              <li>Member, American Society of Retina Specialists</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNZUETA -->
+    <div class="docp" id="unzueta">
+      <div class="docp-photo"><img src="assets/doctors/unzueta.png" alt="Dr. Miguel Unzueta"><span class="role-tag" data-en="Director" data-es="Director">Director</span></div>
+      <div>
+        <h2>Miguel Unzueta, M.D.</h2>
+        <div class="spec-line" data-en="Glaucoma & Cataract Surgery · Director" data-es="Glaucoma y Cirugía de Cataratas · Director">Glaucoma &amp; Cataract Surgery · Director</div>
+        <p class="bio" data-en="Dr. Unzueta has practiced ophthalmology for many years with an emphasis on patient comfort and keeping up to date with the latest advancements in the field. He has wide-ranging experience across ophthalmology, from eye-disorder prevention to corneal reshaping." data-es="El Dr. Unzueta ha ejercido la oftalmología durante muchos años con énfasis en la comodidad del paciente y manteniéndose al día con los últimos avances del campo. Tiene amplia experiencia en oftalmología, desde la prevención de trastornos oculares hasta el remodelado corneal.">Dr. Unzueta has practiced ophthalmology for many years with an emphasis on patient comfort and keeping up to date with the latest advancements in the field. He has wide-ranging experience across ophthalmology, from eye-disorder prevention to corneal reshaping.</p>
+        <blockquote data-en="“I am proud to provide my patients with the best in vision treatment technology, patient comfort, and treatment options.”" data-es="“Me enorgullece ofrecer a mis pacientes lo mejor en tecnología de tratamiento visual, comodidad y opciones de tratamiento.”">“I am proud to provide my patients with the best in vision treatment technology, patient comfort, and treatment options.”</blockquote>
+        <div class="tags">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/></svg>Glaucoma</span>
+          <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>Cataract Surgery</span>
+          <span class="pill" data-en="Corneal Reshaping" data-es="Remodelado Corneal">Corneal Reshaping</span>
+          <span class="pill" data-en="Eye Disorder Prevention" data-es="Prevención de Trastornos">Eye Disorder Prevention</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DUONG -->
+    <div class="docp" id="duong">
+      <div class="docp-photo"><img src="assets/doctors/duong.png" alt="Dr. Henry Duong"><span class="role-tag" data-en="Optometrist" data-es="Optometrista">Optometrist</span></div>
+      <div>
+        <h2>Henry Duong, O.D.</h2>
+        <div class="spec-line" data-en="Medical Optometrist · Low Vision Care" data-es="Optometrista Médico · Cuidado de Baja Visión">Medical Optometrist · Low Vision Care</div>
+        <p class="bio" data-en="Dr. Henry Duong is the Medical Optometrist at MEC Eye Specialists and sees patients at the clinics in Los Angeles, Montebello, and Lakewood. Raised in the Los Angeles area, he is grateful to serve the local community. Dr. Duong has participated in humanitarian events including free health clinics in the Bay Area, Los Angeles / Orange County, and Nicaragua." data-es="El Dr. Henry Duong es el Optometrista Médico de MEC Eye Specialists y atiende a pacientes en las clínicas de Los Ángeles, Montebello y Lakewood. Criado en el área de Los Ángeles, agradece poder servir a la comunidad local. El Dr. Duong ha participado en eventos humanitarios, incluyendo clínicas de salud gratuitas en el Área de la Bahía, Los Ángeles / Condado de Orange y Nicaragua.">Dr. Henry Duong is the Medical Optometrist at MEC Eye Specialists and sees patients at the clinics in Los Angeles, Montebello, and Lakewood. Raised in the Los Angeles area, he is grateful to serve the local community. Dr. Duong has participated in humanitarian events including free health clinics in the Bay Area, Los Angeles / Orange County, and Nicaragua.</p>
+        <div class="tags">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3.2"/></svg>Low Vision Care</span>
+          <span class="pill" data-en="Comprehensive Eye Exams" data-es="Exámenes Completos">Comprehensive Eye Exams</span>
+          <span class="pill" data-en="Medical Optometry" data-es="Optometría Médica">Medical Optometry</span>
+        </div>
+        <div class="cred-grid">
+          <div class="cred-block">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg><span data-en="Education & Training" data-es="Educación y Formación">Education &amp; Training</span></h4>
+            <ul>
+              <li>B.S., Molecular and Cell Biology, University of California, Berkeley</li>
+              <li>O.D., University of California, Berkeley — School of Optometry</li>
+            </ul>
+          </div>
+          <div class="cred-block">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-en="Community" data-es="Comunidad">Community</span></h4>
+            <ul>
+              <li data-en="Free health clinics — Bay Area" data-es="Clínicas de salud gratuitas — Área de la Bahía">Free health clinics — Bay Area</li>
+              <li data-en="Free health clinics — LA / Orange County" data-es="Clínicas gratuitas — LA / Condado de Orange">Free health clinics — LA / Orange County</li>
+              <li data-en="Humanitarian mission — Nicaragua" data-es="Misión humanitaria — Nicaragua">Humanitarian mission — Nicaragua</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOWERS -->
+    <div class="docp" id="flowers">
+      <div class="docp-photo"><img src="assets/doctors/flowers-portrait.png" alt="Dr. Charles W. Flowers Jr."><span class="role-tag" data-en="Newest Member" data-es="Nuevo Integrante">Newest Member</span></div>
+      <div>
+        <h2>Charles W. Flowers Jr., M.D.</h2>
+        <div class="spec-line" data-en="Cornea & Refractive Surgery · LASIK" data-es="Córnea y Cirugía Refractiva · LASIK">Cornea &amp; Refractive Surgery · LASIK</div>
+        <p class="bio" data-en="The newest member of our team, Dr. Flowers has over 20 years of experience performing LASIK eye surgery and is a nationally recognized leader in the field. He is committed to providing the highest quality and most advanced visual corrective procedures, and is regarded by both patients and peers for his surgical skill and the warm, caring way in which he relates to his patients." data-es="El integrante más reciente de nuestro equipo, el Dr. Flowers tiene más de 20 años de experiencia realizando cirugía ocular LASIK y es un líder reconocido a nivel nacional en el campo. Está comprometido a ofrecer los procedimientos correctivos visuales de la más alta calidad y más avanzados, y es reconocido tanto por sus pacientes como por sus colegas por su habilidad quirúrgica y la forma cálida y atenta en que se relaciona con sus pacientes.">The newest member of our team, Dr. Flowers has over 20 years of experience performing LASIK eye surgery and is a nationally recognized leader in the field. He is committed to providing the highest quality and most advanced visual corrective procedures, and is regarded by both patients and peers for his surgical skill and the warm, caring way in which he relates to his patients.</p>
+        <p class="bio" data-en="His involvement in Laser Vision Correction began in 1993 with a coveted fellowship at USC's Doheny Eye Institute, where he conducted basic research and authored several book chapters and articles on the subject. He went on to join the faculties of UCLA's Jules Stein Eye Institute and the Charles R. Drew University Department of Ophthalmology, dividing his time between teaching, research, and clinical practice — securing over one million dollars in research grant funding and rising to Associate Professor." data-es="Su trabajo en la Corrección de la Visión con Láser comenzó en 1993 con una codiciada subespecialidad en el Doheny Eye Institute de USC, donde realizó investigación básica y escribió varios capítulos de libros y artículos sobre el tema. Posteriormente se incorporó a las facultades del Jules Stein Eye Institute de UCLA y del Departamento de Oftalmología de Charles R. Drew University, dividiendo su tiempo entre la docencia, la investigación y la práctica clínica, obteniendo más de un millón de dólares en fondos de investigación y ascendiendo a Profesor Asociado.">His involvement in Laser Vision Correction began in 1993 with a coveted fellowship at USC's Doheny Eye Institute, where he conducted basic research and authored several book chapters and articles on the subject. He went on to join the faculties of UCLA's Jules Stein Eye Institute and the Charles R. Drew University Department of Ophthalmology, dividing his time between teaching, research, and clinical practice — securing over one million dollars in research grant funding and rising to Associate Professor.</p>
+        <p class="bio" data-en="He has been recognized repeatedly as one of the nation's top laser eye surgeons by the Consumers' Research Council of America and as a top LASIK surgeon by San Diego Magazine, and has served as a medical consultant for the FOX 6 XETV Morning Show. Dr. Flowers has been providing corneal sub-specialty services to Guam since 2010." data-es="Ha sido reconocido repetidamente como uno de los mejores cirujanos oculares con láser del país por el Consumers' Research Council of America y como uno de los mejores cirujanos LASIK por San Diego Magazine, y se ha desempeñado como consultor médico para el FOX 6 XETV Morning Show. El Dr. Flowers ha brindado servicios de subespecialidad corneal a Guam desde 2010.">He has been recognized repeatedly as one of the nation's top laser eye surgeons by the Consumers' Research Council of America and as a top LASIK surgeon by San Diego Magazine, and has served as a medical consultant for the FOX 6 XETV Morning Show. Dr. Flowers has been providing corneal sub-specialty services to Guam since 2010.</p>
+        <div class="video-embed">
+          <iframe src="https://www.youtube-nocookie.com/embed/m3Wh80B0ygk?start=8" title="Dr. Charles W. Flowers Jr. introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <a class="video-fallback" href="https://www.youtube.com/watch?v=m3Wh80B0ygk&t=8s" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span data-en="Video not loading? Watch on YouTube" data-es="¿No carga el video? Ver en YouTube">Video not loading? Watch on YouTube</span></a>
+
+        <div class="flowers-stats">
+          <div class="fs"><b>30,000+</b><span data-en="LASIK procedures performed" data-es="Procedimientos LASIK realizados">LASIK procedures performed</span></div>
+          <div class="fs"><b>20+ <span data-en="yrs" data-es="años">yrs</span></b><span data-en="Experience in eye surgery" data-es="De experiencia en cirugía ocular">Experience in eye surgery</span></div>
+          <div class="fs"><b data-en="Nationally" data-es="A nivel nacional">Nationally</b><span data-en="Recognized LASIK leader" data-es="Líder reconocido en LASIK">Recognized LASIK leader</span></div>
+        </div>
+
+        <div class="cred-block" style="margin-top:30px">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg><span data-en="Educational Excellence" data-es="Excelencia Académica">Educational Excellence</span></h4>
+        </div>
+        <div class="edu-time">
+          <div class="et"><div class="yr">1981–1985</div><div class="inst"><b>Stanford University</b><span data-en="Bachelor of Science, Chemistry" data-es="Licenciatura en Ciencias, Química">Bachelor of Science, Chemistry</span></div></div>
+          <div class="et"><div class="yr">1985–1989</div><div class="inst"><b>Cornell University Medical College</b><span data-en="Doctor of Medicine" data-es="Doctor en Medicina">Doctor of Medicine</span><div class="hon" data-en="National Medical Fellowship Scholar" data-es="Becario National Medical Fellowship">National Medical Fellowship Scholar</div></div></div>
+          <div class="et"><div class="yr">1989–1993</div><div class="inst"><b>Charles R. Drew University School of Medicine</b><span data-en="Internship, General Surgery & Residency, Ophthalmology" data-es="Internado, Cirugía General y Residencia, Oftalmología">Internship, General Surgery &amp; Residency, Ophthalmology</span><div class="hon" data-en="Chief Resident (1992–1993) · Intern of the Year · National Eye Institute Fellowship Recipient" data-es="Residente Jefe (1992–1993) · Interno del Año · Becario del National Eye Institute">Chief Resident (1992–1993) · Intern of the Year · National Eye Institute Fellowship Recipient</div></div></div>
+          <div class="et"><div class="yr">1993–1995</div><div class="inst"><b>USC / Doheny Eye Institute</b><span data-en="Fellowship, Corneal & Refractive Surgery & External Disease" data-es="Subespecialidad, Cirugía Corneal y Refractiva y Enfermedad Externa">Fellowship, Corneal &amp; Refractive Surgery &amp; External Disease</span><div class="hon" data-en="Henry J. Kaiser Family Foundation Merit Award · Award of Excellence in Resident Training" data-es="Premio al Mérito Henry J. Kaiser Family Foundation · Premio a la Excelencia en Formación de Residentes">Henry J. Kaiser Family Foundation Merit Award · Award of Excellence in Resident Training</div></div></div>
+        </div>
+
+        <div class="cred-block" style="margin-top:28px">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg><span data-en="Surgical Specializations" data-es="Especializaciones Quirúrgicas">Surgical Specializations</span></h4>
+          <div class="tags">
+            <span class="pill">LASIK</span>
+            <span class="pill" data-en="Advanced Cataract Surgery" data-es="Cirugía Avanzada de Cataratas">Advanced Cataract Surgery</span>
+            <span class="pill" data-en="Corneal Transplantation (DSAEK)" data-es="Trasplante de Córnea (DSAEK)">Corneal Transplantation (DSAEK)</span>
+            <span class="pill">Visian ICL</span>
+            <span class="pill">PRK</span>
+            <span class="pill" data-en="Intacs for Keratoconus" data-es="Intacs para Queratocono">Intacs for Keratoconus</span>
+            <span class="pill" data-en="Pterygium Surgery" data-es="Cirugía de Pterigión">Pterygium Surgery</span>
+            <span class="pill" data-en="Collagen Cross-Linking" data-es="Cross-Linking de Colágeno">Collagen Cross-Linking</span>
+          </div>
+        </div>
+
+        <div class="cred-block" style="margin-top:28px">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M8 12l2.5 2.5L16 9"/></svg><span data-en="Memberships & Fellowships" data-es="Membresías y Becas">Memberships &amp; Fellowships</span></h4>
+          <ul>
+            <li data-en="Fellow, American College of Surgeons" data-es="Fellow, American College of Surgeons">Fellow, American College of Surgeons</li>
+            <li data-en="Fellow, American Academy of Ophthalmology" data-es="Fellow, American Academy of Ophthalmology">Fellow, American Academy of Ophthalmology</li>
+            <li data-en="Active Member, American Society of Cataract & Refractive Surgery" data-es="Miembro Activo, American Society of Cataract & Refractive Surgery">Active Member, American Society of Cataract &amp; Refractive Surgery</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section bg-mist" style="text-align:center">
+  <div class="container">
+    <h2 style="font-size:clamp(28px,4vw,44px)" data-en="Find the right specialist for you" data-es="Encuentra el especialista adecuado">Find the right specialist for you</h2>
+    <p class="lead" style="margin:16px auto 0;max-width:520px" data-en="Not sure who to see? Request an appointment and our team will match you with the right doctor." data-es="¿No sabes a quién ver? Solicita una cita y nuestro equipo te asignará el doctor adecuado.">Not sure who to see? Request an appointment and our team will match you with the right doctor.</p>
+    <div style="display:flex;gap:14px;justify-content:center;margin-top:30px;flex-wrap:wrap"><a href="forms/registration.html" class="btn btn-primary btn-lg" data-en="Request an Appointment" data-es="Solicitar una Cita">Request an Appointment</a></div>
+  </div>
+</section>
+
+<div data-footer></div>
+<script src="assets/site.js"></script>
+<script src="assets/footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEC Eye Specialists — Comprehensive Eye Care</title>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* ===================== HERO ===================== */
+  .hero { position: relative; isolation: isolate; overflow: hidden; background: var(--ink); }
+  .hero-img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    object-position: center center; z-index: -2;
+  }
+  .hero-veil {
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(90deg, rgba(8,20,34,.82) 0%, rgba(8,20,34,.5) 40%, rgba(8,20,34,.12) 72%, rgba(8,20,34,0) 100%),
+      linear-gradient(180deg, rgba(8,20,34,.4) 0%, rgba(8,20,34,0) 30%, rgba(8,20,34,.1) 70%, rgba(8,20,34,.55) 100%);
+  }
+  .hero-inner { padding-block: clamp(96px, 16vw, 188px) clamp(72px, 10vw, 120px); }
+  .hero-copy { max-width: 660px; }
+  .hero h1 {
+    color: #fff; font-size: clamp(40px, 6.4vw, 78px); line-height: 1.02;
+    letter-spacing: -.02em; margin: 22px 0 0; text-shadow: 0 2px 40px rgba(0,0,0,.4);
+  }
+  .hero h1 em { font-style: italic; color: var(--amber-soft); }
+  .hero .lead { color: rgba(255,255,255,.9); font-size: clamp(17px, 1.7vw, 21px); margin-top: 26px; max-width: 540px; text-shadow: 0 1px 20px rgba(0,0,0,.5); }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 38px; }
+  .hero-stats {
+    display: flex; gap: 38px; flex-wrap: wrap; margin-top: 54px; padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,.2);
+  }
+  .hero-stats .s b { display: block; font-family: var(--serif); font-size: clamp(28px,3vw,38px); color: #fff; line-height: 1; }
+  .hero-stats .s span { font-size: 13.5px; color: rgba(255,255,255,.78); letter-spacing: .02em; }
+
+  /* direction switcher control (floats, exploration aid) */
+  .dir-switch {
+    position: fixed; right: 18px; bottom: 18px; z-index: 80;
+    background: rgba(10,26,44,.9); backdrop-filter: blur(10px); color: #fff;
+    border: 1px solid rgba(255,255,255,.16); border-radius: 14px; padding: 10px 12px;
+    box-shadow: var(--shadow-lg); max-width: calc(100vw - 36px);
+  }
+  .dir-switch .ds-label { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.6); font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
+  .dir-switch .ds-label svg { width: 14px; height: 14px; color: var(--amber); }
+  .dir-switch .ds-row { display: flex; gap: 6px; }
+  .dir-switch button {
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.82);
+    border-radius: 9px; padding: 8px 13px; font-size: 13px; font-weight: 600; transition: .18s; text-align: left; line-height: 1.15;
+  }
+  .dir-switch button b { display: block; font-size: 13px; }
+  .dir-switch button small { font-size: 10.5px; opacity: .6; font-weight: 500; }
+  .dir-switch button:hover { background: rgba(255,255,255,.14); }
+  .dir-switch button.active { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+  .dir-switch button.active small { opacity: .75; }
+
+  /* ===================== TRUST STRIP ===================== */
+  .trust { background: var(--ink-2); }
+  .trust .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-block: 22px; }
+  .trust .t-item { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.84); font-size: 14.5px; font-weight: 500; }
+  .trust .t-item svg { width: 22px; height: 22px; color: var(--aqua); flex: none; }
+
+  /* ===================== SERVICES ===================== */
+  .svc-grid .card { display: flex; flex-direction: column; }
+  .svc-grid .card p { flex: 1; }
+
+  /* ===================== APPROACH (split) ===================== */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 6vw, 84px); align-items: center; }
+  @media (max-width: 860px){ .split { grid-template-columns: 1fr; } }
+  .split-media {
+    border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/3.4; position: relative;
+    background: linear-gradient(150deg, var(--ink), var(--teal-deep)); box-shadow: var(--shadow-lg);
+  }
+  .split-media .ph {
+    position: absolute; inset: 0; display: grid; place-items: center; color: rgba(255,255,255,.5);
+    background:
+      radial-gradient(90% 70% at 20% 10%, rgba(226,154,60,.4), transparent 50%),
+      radial-gradient(90% 70% at 90% 100%, rgba(63,180,189,.45), transparent 55%);
+    text-align: center; gap: 8px; flex-direction: column;
+  }
+  .split-media .ph svg { width: 54px; height: 54px; opacity: .8; }
+  .split-media .ph span { font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; }
+  .feat-list { display: grid; gap: 18px; margin-top: 30px; }
+  .feat-list .f { display: flex; gap: 16px; }
+  .feat-list .f .fi { width: 42px; height: 42px; border-radius: 11px; background: var(--aqua-soft); color: var(--teal-deep); display: grid; place-items: center; flex: none; }
+  .feat-list .f .fi svg { width: 21px; height: 21px; }
+  .feat-list .f h4 { font-family: var(--sans); font-size: 16.5px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .feat-list .f p { font-size: 14.5px; color: var(--slate); }
+
+  /* ===================== DOCTORS ===================== */
+  .doc-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: .25s; }
+  .doc-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); border-color: var(--aqua); }
+  .doc-photo { aspect-ratio: 1/1.04; position: relative; background: linear-gradient(160deg, var(--mist-2), #fff); display: grid; place-items: center; }
+  .doc-photo svg { width: 64px; height: 64px; color: var(--slate-2); opacity: .55; }
+  .doc-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .doc-photo .badge { position: absolute; left: 14px; bottom: 14px; z-index: 1; background: rgba(255,255,255,.92); color: var(--teal-deep); font-size: 11.5px; font-weight: 700; letter-spacing: .04em; padding: 5px 11px; border-radius: 999px; }
+  .doc-card .b { padding: 20px 22px 24px; }
+  .doc-card h3 { font-size: 20px; }
+  .doc-card .spec { color: var(--teal); font-weight: 600; font-size: 13.5px; margin-top: 4px; }
+
+  /* ===================== LOCATIONS ===================== */
+  .loc-card { display: flex; gap: 20px; padding: 26px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
+  .loc-card .map {
+    width: 120px; flex: none; border-radius: 12px; align-self: stretch; min-height: 130px;
+    background:
+      linear-gradient(rgba(14,124,136,.08), rgba(14,124,136,.08)),
+      repeating-linear-gradient(0deg, var(--line-soft) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(90deg, var(--line-soft) 0 1px, transparent 1px 26px), var(--mist);
+    position: relative;
+  }
+  .loc-card .map::after { content:""; position:absolute; left:50%; top:50%; width:14px; height:14px; transform:translate(-50%,-50%); border-radius:50% 50% 50% 0; background: var(--amber); rotate: 45deg; box-shadow: 0 3px 8px rgba(0,0,0,.25); }
+  @media (max-width:520px){ .loc-card .map{ display:none; } }
+  .loc-card h3 { font-size: 21px; }
+  .loc-card .row { display: flex; gap: 9px; align-items: flex-start; color: var(--slate); font-size: 14.5px; margin-top: 10px; }
+  .loc-card .row svg { width: 17px; height: 17px; color: var(--teal); flex: none; margin-top: 2px; }
+
+  /* ===================== FORMS CTA ===================== */
+  .forms-band { background: linear-gradient(135deg, var(--ink), var(--teal-deep)); border-radius: var(--radius-lg); padding: clamp(36px,5vw,60px); position: relative; overflow: hidden; }
+  .forms-band::after { content:""; position:absolute; inset:0; opacity:.5; background: radial-gradient(70% 120% at 90% 10%, rgba(226,154,60,.3), transparent 55%); }
+  .forms-band .fb-inner { position: relative; display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+  @media (max-width: 760px){ .forms-band .fb-inner { grid-template-columns: 1fr; } }
+  .forms-band h2 { color: #fff; font-size: clamp(26px,3.4vw,38px); }
+  .forms-band p { color: rgba(255,255,255,.82); margin-top: 14px; }
+  .form-links { display: grid; gap: 10px; }
+  .form-links a { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 12px; padding: 15px 18px; color: #fff; font-weight: 600; font-size: 15px; transition: .2s; }
+  .form-links a:hover { background: rgba(255,255,255,.2); transform: translateX(4px); }
+  .form-links a svg { width: 20px; height: 20px; color: var(--amber-soft); flex: none; }
+  .form-links a .chev { margin-left: auto; color: rgba(255,255,255,.6); }
+
+  /* ===================== TESTIMONIALS ===================== */
+  .quote-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; }
+  .quote-card .stars { color: var(--amber); display: flex; gap: 3px; margin-bottom: 16px; }
+  .quote-card .stars svg { width: 17px; height: 17px; }
+  .quote-card blockquote { margin: 0; font-family: var(--serif); font-size: 19px; line-height: 1.5; color: var(--ink); }
+  .quote-card .who { margin-top: 20px; display: flex; align-items: center; gap: 12px; }
+  .quote-card .who .av { width: 40px; height: 40px; border-radius: 50%; background: var(--aqua-soft); color: var(--teal-deep); display: grid; place-items: center; font-weight: 700; font-size: 15px; }
+  .quote-card .who b { font-size: 14.5px; color: var(--ink); display: block; font-family: var(--sans); }
+  .quote-card .who span { font-size: 13px; color: var(--slate); }
+
+  /* ===================== CTA BAND ===================== */
+  .cta-final { background: var(--mist); text-align: center; }
+  .cta-final h2 { font-size: clamp(30px,4.4vw,52px); }
+  .cta-final .lead { margin: 18px auto 0; max-width: 540px; }
+  .cta-final .hero-actions { justify-content: center; }
+
+  /* ============================================================
+     DIRECTION VARIANTS — switch "overall visual style"
+     ============================================================ */
+  /* ---- B: MODERN MED — brighter, all-sans, contained hero, card-forward ---- */
+  body.dir-modern { --teal: #0C8E9C; --aqua: #2FC2CC; }
+  body.dir-modern h1, body.dir-modern h2, body.dir-modern h3, body.dir-modern h4 { font-family: var(--sans); letter-spacing: -.02em; font-weight: 800; }
+  body.dir-modern .hero { background: var(--mist); padding: 28px var(--gut); }
+  body.dir-modern .hero-inner { padding: 0; }
+  body.dir-modern .hero-frame { position: relative; border-radius: 28px; overflow: hidden; isolation: isolate; }
+  body.dir-modern .hero-img { border-radius: 28px; }
+  body.dir-modern .hero-veil { background: linear-gradient(100deg, rgba(8,20,34,.9) 0%, rgba(8,20,34,.55) 45%, rgba(8,20,34,.12) 78%, rgba(8,20,34,0) 100%); border-radius: 28px; }
+  body.dir-modern .hero-inner { padding-block: clamp(80px,12vw,150px); }
+  body.dir-modern .hero h1 em { font-style: normal; color: var(--aqua); }
+  body.dir-modern .hero h1 { line-height: .98; }
+  body.dir-modern .btn { border-radius: 12px; }
+  body.dir-modern .card, body.dir-modern .doc-card, body.dir-modern .loc-card, body.dir-modern .quote-card { border-radius: 18px; }
+  body.dir-modern .quote-card blockquote { font-family: var(--sans); font-weight: 600; font-size: 17px; letter-spacing: -.01em; }
+  body.dir-modern .eyebrow { color: var(--teal); }
+
+  /* ---- C: CALM PREMIUM — immersive dark, big type, gold accents, minimal ---- */
+  body.dir-calm { background: var(--ink); color: rgba(255,255,255,.74); }
+  body.dir-calm .section { background: var(--ink); }
+  body.dir-calm .bg-mist { background: var(--ink-2); }
+  body.dir-calm h1, body.dir-calm h2, body.dir-calm h3, body.dir-calm h4 { color: #fff; }
+  body.dir-calm .hero-veil { background: linear-gradient(90deg, rgba(8,20,34,.85) 0%, rgba(8,20,34,.45) 45%, rgba(8,20,34,.1) 75%, rgba(8,20,34,0) 100%), linear-gradient(180deg, rgba(8,20,34,.3) 0%, rgba(8,20,34,0) 35%, rgba(10,26,44,.97) 100%); }
+  body.dir-calm .hero h1 { font-size: clamp(44px, 7.2vw, 92px); }
+  body.dir-calm .hero h1 em { color: var(--amber); }
+  body.dir-calm .section-head h2 { font-size: clamp(34px, 4.6vw, 56px); }
+  body.dir-calm .lead { color: rgba(255,255,255,.66); }
+  body.dir-calm .card, body.dir-calm .doc-card, body.dir-calm .loc-card, body.dir-calm .quote-card {
+    background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.1);
+  }
+  body.dir-calm .card h3, body.dir-calm .doc-card h3, body.dir-calm .loc-card h3, body.dir-calm .quote-card blockquote { color: #fff; }
+  body.dir-calm .card p, body.dir-calm .loc-card .row { color: rgba(255,255,255,.6); }
+  body.dir-calm .card:hover, body.dir-calm .doc-card:hover { border-color: var(--amber); }
+  body.dir-calm .card .ico { background: rgba(226,154,60,.14); color: var(--amber-soft); border-color: rgba(226,154,60,.25); }
+  body.dir-calm .eyebrow { color: var(--amber-soft); }
+  body.dir-calm .eyebrow::before { background: var(--amber); }
+  body.dir-calm .btn-primary { background: var(--amber); color: var(--ink); }
+  body.dir-calm .btn-primary:hover { background: var(--amber-deep); color:#fff; }
+  body.dir-calm .btn-ghost { color: #fff; border-color: rgba(255,255,255,.3); }
+  body.dir-calm .trust { background: rgba(255,255,255,.03); }
+  body.dir-calm .doc-photo { background: rgba(255,255,255,.05); }
+  body.dir-calm .pill { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); color: #fff; }
+  body.dir-calm .cta-final { background: var(--ink-2); }
+  body.dir-calm .quote-card .who span { color: rgba(255,255,255,.55); }
+  body.dir-calm .quote-card .who b { color:#fff; }
+  body.dir-calm .feat-list .f h4 { color:#fff; }
+  body.dir-calm .feat-list .f p { color: rgba(255,255,255,.6); }
+</style>
+</head>
+<body class="dir-aurora">
+
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+  <div class="container">
+    <div class="tb-left">
+      <a href="tel:8442115462"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(844) 211-5462</a>
+      <a href="#" class="tb-hours" data-en="Mon–Fri · 8am–5pm" data-es="Lun–Vie · 8am–5pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Fri · 8am–5pm</a>
+    </div>
+    <a class="tb-portal" href="patients.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</span></a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="es">ES</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <span class="mark"><span>M</span></span>
+      <span><b>MEC</b><small>Eye Specialists</small></span>
+    </a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="services.html" data-page="services.html" data-en="Services" data-es="Servicios">Services</a>
+      <a href="doctors.html" data-page="doctors.html" data-en="Our Doctors" data-es="Doctores">Our Doctors</a>
+      
+      <a href="patients.html" data-page="patients.html" data-en="For Patients" data-es="Pacientes">For Patients</a>
+      <a href="referrals.html" data-page="referrals.html" data-en="Referrals" data-es="Referencias">Referrals</a>
+      <a href="contact.html" data-page="contact.html" data-en="Contact" data-es="Contacto">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="forms/registration.html" class="btn btn-primary" data-en="Request Appointment" data-es="Solicitar Cita">Request Appointment</a>
+      <button class="nav-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-frame">
+    <img class="hero-img" src="assets/cosmic-hero.png" alt="A person beneath a vast star-filled aurora sky">
+    <div class="hero-veil"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow on-dark" data-en="Comprehensive Ophthalmology" data-es="Oftalmología Integral">Comprehensive Ophthalmology</span>
+        <h1 data-en="See the world with" data-es="Mira el mundo con">See the world with <em data-en="remarkable clarity." data-es="claridad excepcional.">remarkable clarity.</em></h1>
+        <p class="lead" data-en="From cataract surgery to glaucoma and retinal care, MEC Eye Specialists pairs advanced technology with the kind of attention that puts you at ease." data-es="Desde cirugía de cataratas hasta glaucoma y retina, MEC Eye Specialists combina tecnología avanzada con una atención que te tranquiliza.">From cataract surgery to glaucoma and retinal care, MEC Eye Specialists pairs advanced technology with the kind of attention that puts you at ease.</p>
+        <div class="hero-actions">
+          <a href="forms/registration.html" class="btn btn-amber btn-lg" data-en="Request an Appointment" data-es="Solicitar una Cita">Request an Appointment</a>
+          <a href="services.html" class="btn btn-ghost on-dark btn-lg" data-en="Explore Our Care" data-es="Nuestros Servicios">Explore Our Care</a>
+        </div>
+        <div class="hero-stats">
+          <div class="s"><b data-en="Since 2001" data-es="Desde 2001">Since 2001</b><span data-en="Serving Greater LA" data-es="Sirviendo el área de LA">Serving Greater LA</span></div>
+          <div class="s"><b>4</b><span data-en="Fellowship-trained specialists" data-es="Especialistas con subespecialidad">Fellowship-trained specialists</span></div>
+          <div class="s"><b data-en="LA → Long Beach" data-es="LA → Long Beach">LA → Long Beach</b><span data-en="Multiple convenient offices" data-es="Varias oficinas">Multiple convenient offices</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST STRIP ===== -->
+<div class="trust">
+  <div class="container">
+    <div class="t-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg><span data-en="Medicare & Medicaid accepted" data-es="Aceptamos Medicare y Medicaid">Medicare &amp; Medicaid accepted</span></div>
+    <div class="t-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span data-en="Board-certified ophthalmologists" data-es="Oftalmólogos certificados">Board-certified ophthalmologists</span></div>
+    <div class="t-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg><span data-en="Advanced surgical technology" data-es="Tecnología quirúrgica avanzada">Advanced surgical technology</span></div>
+    <div class="t-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/><circle cx="12" cy="12" r="10"/></svg><span data-en="English & Spanish speaking team" data-es="Equipo bilingüe inglés y español">English &amp; Spanish speaking team</span></div>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" data-en="What We Treat" data-es="Lo Que Tratamos">What We Treat</span>
+      <h2 data-en="Specialized eye care, all in one place" data-es="Cuidado ocular especializado, en un solo lugar">Specialized eye care, all in one place</h2>
+      <p class="lead" data-en="Our ophthalmologists diagnose and treat the full range of eye conditions — backed by the latest diagnostics, lasers, and microsurgical techniques." data-es="Nuestros oftalmólogos diagnostican y tratan toda la gama de afecciones oculares, con los diagnósticos, láseres y técnicas microquirúrgicas más avanzados.">Our ophthalmologists diagnose and treat the full range of eye conditions — backed by the latest diagnostics, lasers, and microsurgical techniques.</p>
+    </div>
+    <div class="grid g-3 svc-grid">
+      <a class="card fade-up" href="services.html#cataract">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.2"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg></div>
+        <h3 data-en="Cataract Surgery" data-es="Cirugía de Cataratas">Cataract Surgery</h3>
+        <p data-en="Advanced microsurgery with premium intraocular lenses to restore clear vision and reduce dependence on glasses." data-es="Microcirugía avanzada con lentes intraoculares premium para restaurar la visión clara y reducir la dependencia de las gafas.">Advanced microsurgery with premium intraocular lenses to restore clear vision and reduce dependence on glasses.</p>
+        <span class="more" data-en="Learn more" data-es="Más información">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="card fade-up" data-delay="60" href="services.html#glaucoma">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/></svg></div>
+        <h3 data-en="Glaucoma Management" data-es="Manejo del Glaucoma">Glaucoma Management</h3>
+        <p data-en="Early detection and ongoing care using the latest medications, laser therapy, and surgical options to preserve your sight." data-es="Detección temprana y cuidado continuo con medicamentos, terapia láser y opciones quirúrgicas para preservar tu visión.">Early detection and ongoing care using the latest medications, laser therapy, and surgical options to preserve your sight.</p>
+        <span class="more" data-en="Learn more" data-es="Más información">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="card fade-up" data-delay="120" href="services.html#retina">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
+        <h3 data-en="Retinal Disease Treatment" data-es="Tratamiento de Retina">Retinal Disease Treatment</h3>
+        <p data-en="Expert care for diabetic retinopathy, macular degeneration, and more — including injections and laser therapy." data-es="Atención experta para retinopatía diabética, degeneración macular y más, incluyendo inyecciones y terapia láser.">Expert care for diabetic retinopathy, macular degeneration, and more — including injections and laser therapy.</p>
+        <span class="more" data-en="Learn more" data-es="Más información">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="card fade-up" href="services.html#exams">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3.2"/></svg></div>
+        <h3 data-en="Comprehensive Eye Exams" data-es="Exámenes Oculares Completos">Comprehensive Eye Exams</h3>
+        <p data-en="Thorough evaluations of your vision and eye health that catch conditions early, when treatment is most effective." data-es="Evaluaciones completas de tu visión y salud ocular que detectan afecciones temprano, cuando el tratamiento es más eficaz.">Thorough evaluations of your vision and eye health that catch conditions early, when treatment is most effective.</p>
+        <span class="more" data-en="Learn more" data-es="Más información">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="card fade-up" data-delay="60" href="services.html#diabetic">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v4M12 2a6 6 0 0 0-6 6c0 4 6 12 6 12s6-8 6-12a6 6 0 0 0-6-6z"/><circle cx="12" cy="8" r="2"/></svg></div>
+        <h3 data-en="Diabetic Eye Care" data-es="Cuidado Ocular Diabético">Diabetic Eye Care</h3>
+        <p data-en="Specialized screening and treatment for diabetes-related complications, coordinated with your primary care physician." data-es="Detección y tratamiento especializado para complicaciones relacionadas con la diabetes, coordinado con tu médico de cabecera.">Specialized screening and treatment for diabetes-related complications, coordinated with your primary care physician.</p>
+        <span class="more" data-en="Learn more" data-es="Más información">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="card fade-up" data-delay="120" href="services.html#emergency">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2L3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5z"/><path d="M12 8v4M12 16h.01"/></svg></div>
+        <h3 data-en="Emergency Eye Care" data-es="Atención Ocular de Emergencia">Emergency Eye Care</h3>
+        <p data-en="Prompt treatment for eye injuries, sudden vision loss, and urgent conditions — immediate care when you need it most." data-es="Tratamiento rápido para lesiones oculares, pérdida repentina de visión y afecciones urgentes, cuando más lo necesitas.">Prompt treatment for eye injuries, sudden vision loss, and urgent conditions — immediate care when you need it most.</p>
+        <span class="more" data-en="Learn more" data-es="Más información">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPROACH ===== -->
+<section class="section bg-mist">
+  <div class="container split">
+    <div class="split-media fade-up">
+      <div class="ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3.2"/></svg>
+        <span data-en="Clinic & care team photo" data-es="Foto del equipo">Clinic &amp; care team photo</span>
+      </div>
+    </div>
+    <div class="fade-up" data-delay="80">
+      <span class="eyebrow" data-en="The MEC Difference" data-es="La Diferencia MEC">The MEC Difference</span>
+      <h2 style="font-size:clamp(28px,3.6vw,42px);margin-top:16px" data-en="Care that treats you like a person, not a chart" data-es="Atención que te trata como persona, no como expediente">Care that treats you like a person, not a chart</h2>
+      <p class="lead" style="margin-top:18px" data-en="We know an eye diagnosis can feel overwhelming. Our team takes the time to explain every option clearly — in English or Spanish — so you can make confident decisions about your vision." data-es="Sabemos que un diagnóstico ocular puede ser abrumador. Nuestro equipo se toma el tiempo de explicar cada opción con claridad, en inglés o español, para que tomes decisiones con confianza.">We know an eye diagnosis can feel overwhelming. Our team takes the time to explain every option clearly — in English or Spanish — so you can make confident decisions about your vision.</p>
+      <div class="feat-list">
+        <div class="f"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4 data-en="Unhurried appointments" data-es="Citas sin prisas">Unhurried appointments</h4><p data-en="Time to ask questions and truly understand your care plan." data-es="Tiempo para hacer preguntas y entender tu plan de atención.">Time to ask questions and truly understand your care plan.</p></div></div>
+        <div class="f"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M8 12l2.5 2.5L16 9"/></svg></div><div><h4 data-en="Seamless paperwork" data-es="Trámites sin complicaciones">Seamless paperwork</h4><p data-en="Complete your forms securely online before you arrive." data-es="Completa tus formularios de forma segura en línea antes de llegar.">Complete your forms securely online before you arrive.</p></div></div>
+        <div class="f"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div><div><h4 data-en="Coordinated, continuous care" data-es="Atención coordinada y continua">Coordinated, continuous care</h4><p data-en="We work with your other physicians to protect your whole health." data-es="Trabajamos con tus otros médicos para proteger tu salud integral.">We work with your other physicians to protect your whole health.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DOCTORS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" data-en="Meet Our Doctors" data-es="Nuestros Doctores">Meet Our Doctors</span>
+      <h2 data-en="Specialists who put your sight first" data-es="Especialistas que ponen tu visión primero">Specialists who put your sight first</h2>
+    </div>
+    <div class="grid g-4">
+      <a class="doc-card fade-up" href="doctors.html#khanna"><div class="doc-photo"><img src="assets/doctors/khanna.png" alt="Dr. Sandeep Khanna"><span class="badge" data-en="Founder" data-es="Fundador">Founder</span></div><div class="b"><h3>Sandeep Khanna, MD</h3><div class="spec" data-en="Vitreo-Retinal Surgery" data-es="Cirugía Vitreorretiniana">Vitreo-Retinal Surgery</div></div></a>
+      <a class="doc-card fade-up" data-delay="60" href="doctors.html#unzueta"><div class="doc-photo"><img src="assets/doctors/unzueta.png" alt="Dr. Miguel Unzueta"><span class="badge" data-en="Director" data-es="Director">Director</span></div><div class="b"><h3>Miguel Unzueta, MD</h3><div class="spec" data-en="Glaucoma & Cataract Surgery" data-es="Glaucoma y Cataratas">Glaucoma &amp; Cataract Surgery</div></div></a>
+      <a class="doc-card fade-up" data-delay="120" href="doctors.html#duong"><div class="doc-photo"><img src="assets/doctors/duong.png" alt="Dr. Henry Duong"><span class="badge" data-en="Optometrist" data-es="Optometrista">Optometrist</span></div><div class="b"><h3>Henry Duong, OD</h3><div class="spec" data-en="Low Vision & Medical Optometry" data-es="Baja Visión y Optometría">Low Vision &amp; Medical Optometry</div></div></a>
+      <a class="doc-card fade-up" data-delay="180" href="doctors.html#flowers"><div class="doc-photo"><img src="assets/doctors/flowers-portrait.png" alt="Dr. Charles W. Flowers Jr."><span class="badge" data-en="Cornea & LASIK" data-es="Córnea y LASIK">Cornea &amp; LASIK</span></div><div class="b"><h3>Charles W. Flowers Jr., MD</h3><div class="spec" data-en="Cornea & Refractive Surgery" data-es="Córnea y Cirugía Refractiva">Cornea &amp; Refractive Surgery</div></div></a>
+    </div>
+    <div style="text-align:center;margin-top:44px"><a href="doctors.html" class="btn btn-ghost" data-en="View full profiles" data-es="Ver perfiles completos">View full profiles</a></div>
+  </div>
+</section>
+
+<!-- ===== FORMS CTA ===== -->
+<section class="section bg-mist" style="padding-block:clamp(40px,5vw,70px)">
+  <div class="container">
+    <div class="forms-band">
+      <div class="fb-inner">
+        <div>
+          <span class="eyebrow on-dark" data-en="New Patients" data-es="Pacientes Nuevos">New Patients</span>
+          <h2 style="margin-top:14px" data-en="Save time — finish your forms before you arrive" data-es="Ahorra tiempo: completa tus formularios antes de llegar">Save time — finish your forms before you arrive</h2>
+          <p data-en="All new-patient paperwork is available securely online. Fill it out at your own pace, in English or Spanish, and walk in ready for your visit." data-es="Todo el papeleo para pacientes nuevos está disponible en línea de forma segura. Complétalo a tu ritmo, en inglés o español, y llega listo para tu visita.">All new-patient paperwork is available securely online. Fill it out at your own pace, in English or Spanish, and walk in ready for your visit.</p>
+        </div>
+        <div class="form-links">
+          <a href="forms/registration.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span data-en="Patient Registration" data-es="Registro de Paciente">Patient Registration</span><span class="chev">→</span></a>
+          <a href="forms/medical-history.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v8M8 12h8"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span data-en="Medical History" data-es="Historial Médico">Medical History</span><span class="chev">→</span></a>
+          <a href="forms/insurance.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><span data-en="Insurance Information" data-es="Información del Seguro">Insurance Information</span><span class="chev">→</span></a>
+          <a href="forms/consent.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span data-en="Consent Forms" data-es="Formularios de Consentimiento">Consent Forms</span><span class="chev">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" data-en="Patient Stories" data-es="Testimonios">Patient Stories</span>
+      <h2 data-en="Trusted across our community" data-es="Confianza en nuestra comunidad">Trusted across our community</h2>
+    </div>
+    <div class="grid g-3">
+      <div class="quote-card fade-up">
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg></div>
+        <blockquote data-en="“After my cataract surgery I could read again without glasses. The whole team explained everything and never made me feel rushed.”" data-es="“Después de mi cirugía de cataratas pude leer otra vez sin gafas. Todo el equipo me explicó todo y nunca me apuró.”">“After my cataract surgery I could read again without glasses. The whole team explained everything and never made me feel rushed.”</blockquote>
+        <div class="who"><span class="av">RM</span><span><b>Rosa M.</b><span data-en="Cataract patient" data-es="Paciente de cataratas">Cataract patient</span></span></div>
+      </div>
+      <div class="quote-card fade-up" data-delay="60">
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg></div>
+        <blockquote data-en="“I'm diabetic and they catch problems early every single time. Booking and the online forms made my first visit effortless.”" data-es="“Soy diabético y siempre detectan los problemas a tiempo. Reservar y los formularios en línea hicieron mi primera visita muy fácil.”">“I'm diabetic and they catch problems early every single time. Booking and the online forms made my first visit effortless.”</blockquote>
+        <div class="who"><span class="av">DT</span><span><b>David T.</b><span data-en="Diabetic eye care" data-es="Cuidado ocular diabético">Diabetic eye care</span></span></div>
+      </div>
+      <div class="quote-card fade-up" data-delay="120">
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6z"/></svg></div>
+        <blockquote data-en="“Being able to fill everything out in Spanish put my mother at ease. Compassionate, professional, and genuinely kind.”" data-es="“Poder llenar todo en español tranquilizó a mi madre. Compasivos, profesionales y genuinamente amables.”">“Being able to fill everything out in Spanish put my mother at ease. Compassionate, professional, and genuinely kind.”</blockquote>
+        <div class="who"><span class="av">LG</span><span><b>Lucia G.</b><span data-en="Family caregiver" data-es="Cuidadora familiar">Family caregiver</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="section cta-final">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center" data-en="Ready When You Are" data-es="Listos Cuando Tú Lo Estés">Ready When You Are</span>
+    <h2 style="margin-top:16px" data-en="Let's take care of your vision" data-es="Cuidemos tu visión">Let's take care of your vision</h2>
+    <p class="lead" data-en="Request an appointment online or call us — our bilingual team is ready to help you see clearly." data-es="Solicita una cita en línea o llámanos: nuestro equipo bilingüe está listo para ayudarte a ver con claridad.">Request an appointment online or call us — our bilingual team is ready to help you see clearly.</p>
+    <div class="hero-actions">
+      <a href="forms/registration.html" class="btn btn-primary btn-lg" data-en="Request an Appointment" data-es="Solicitar una Cita">Request an Appointment</a>
+      <a href="tel:8442115462" class="btn btn-ghost btn-lg" data-en="Call (844) 211-5462" data-es="Llama (844) 211-5462">Call (844) 211-5462</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site" id="footer-placeholder">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <b>MEC</b> <span style="letter-spacing:.24em;font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase">Eye Specialists</span>
+        <p data-en="Comprehensive ophthalmology and surgical eye care, delivered with warmth and clarity." data-es="Oftalmología integral y cirugía ocular, con calidez y claridad.">Comprehensive ophthalmology and surgical eye care, delivered with warmth and clarity.</p>
+      </div>
+      <div>
+        <h4 data-en="Care" data-es="Atención">Care</h4>
+        <a href="services.html" data-en="Cataract Surgery" data-es="Cirugía de Cataratas">Cataract Surgery</a><br>
+        <a href="services.html" data-en="Glaucoma" data-es="Glaucoma">Glaucoma</a><br>
+        <a href="services.html" data-en="Retinal Disease" data-es="Enfermedad de Retina">Retinal Disease</a><br>
+        <a href="services.html" data-en="Diabetic Eye Care" data-es="Cuidado Diabético">Diabetic Eye Care</a>
+      </div>
+      <div>
+        <h4 data-en="Patients" data-es="Pacientes">Patients</h4>
+        <a href="patients.html" data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</a><br>
+        <a href="forms/registration.html" data-en="New Patient Forms" data-es="Formularios">New Patient Forms</a><br>
+        <a href="referrals.html" data-en="Referrals" data-es="Referencias">Referrals</a><br>
+        <a href="patients.html" data-en="Bill Pay" data-es="Pago de Facturas">Bill Pay</a>
+      </div>
+      <div>
+        <h4 data-en="Contact" data-es="Contacto">Contact</h4>
+        <a href="tel:8442115462">(844) 211-5462</a><br>
+        <a href="mailto:hello@meceyespecialists.com">hello@meceyespecialists.com</a><br>
+        <a href="contact.html#locations" data-en="View Locations" data-es="Ver Ubicaciones">View Locations</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2025 MEC Eye Specialists. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></span>
+      <span data-en="Privacy Policy · HIPAA Notice · Accessibility" data-es="Privacidad · Aviso HIPAA · Accesibilidad">Privacy Policy · HIPAA Notice · Accessibility</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== DIRECTION SWITCHER (exploration aid) ===== -->
+<div class="dir-switch" aria-label="Visual direction">
+  <div class="ds-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="14" r="2.5"/><circle cx="8.5" cy="17.5" r="2.5"/><circle cx="6.5" cy="9.5" r="2.5"/></svg>Visual Direction</div>
+  <div class="ds-row">
+    <button data-dir="aurora" class="active"><b>A</b><small>Aurora</small></button>
+    <button data-dir="modern"><b>B</b><small>Modern</small></button>
+    <button data-dir="calm"><b>C</b><small>Calm</small></button>
+  </div>
+</div>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

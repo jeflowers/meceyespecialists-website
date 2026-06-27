@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insurance Information — MEC Eye Specialists</title>
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  .upload { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:560px){ .upload { grid-template-columns:1fr; } }
+  .drop { border:1.5px dashed var(--line); border-radius:14px; padding:26px 18px; text-align:center; color:var(--slate); cursor:pointer; transition:.18s; background:var(--mist); }
+  .drop:hover { border-color: var(--teal); color: var(--teal); background:#fff; }
+  .drop svg { width:30px; height:30px; margin:0 auto 10px; display:block; color: var(--teal); }
+  .drop b { display:block; font-size:14px; color:var(--ink); }
+  .drop span { font-size:12.5px; }
+  .drop.filled { border-style:solid; border-color: var(--teal); background: rgba(14,124,136,.05); color: var(--teal-deep); }
+</style>
+</head>
+<body>
+<div class="topbar"><div class="container"><div class="tb-left"><a href="tel:8442115462"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(844) 211-5462</a><a href="#" data-en="Mon–Fri · 8am–5pm" data-es="Lun–Vie · 8am–5pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Fri · 8am–5pm</a></div><a class="tb-portal" href="../patients.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</span></a><div class="lang-switch"><button data-lang="en" class="active">EN</button><button data-lang="es">ES</button></div></div></div>
+<header class="nav"><div class="container"><a class="brand" href="../index.html"><span class="mark"><span>M</span></span><span><b>MEC</b><small>Eye Specialists</small></span></a><nav class="navlinks" aria-label="Primary"><a href="../services.html" data-en="Services" data-es="Servicios">Services</a><a href="../doctors.html" data-en="Our Doctors" data-es="Doctores">Our Doctors</a><a href="../patients.html" data-en="For Patients" data-es="Pacientes">For Patients</a><a href="../referrals.html" data-en="Referrals" data-es="Referencias">Referrals</a><a href="../contact.html" data-en="Contact" data-es="Contacto">Contact</a></nav><div class="nav-cta"><a href="registration.html" class="btn btn-primary" data-en="Request Appointment" data-es="Solicitar Cita">Request Appointment</a><button class="nav-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button></div></div></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html" data-en="Home" data-es="Inicio">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg><a href="../patients.html" data-en="For Patients" data-es="Pacientes">For Patients</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg><span data-en="Insurance" data-es="Seguro">Insurance</span></div>
+    <span class="eyebrow on-dark" style="margin-top:18px" data-en="New Patient Forms" data-es="Formularios para Pacientes Nuevos">New Patient Forms</span>
+    <h1 data-en="Insurance Information" data-es="Información del Seguro">Insurance Information</h1>
+    <p class="lead" data-en="Share your coverage so we can verify your benefits before your visit. We accept Medicare, Medicaid, and most major plans." data-es="Comparte tu cobertura para que podamos verificar tus beneficios antes de tu visita. Aceptamos Medicare, Medicaid y la mayoría de los planes.">Share your coverage so we can verify your benefits before your visit. We accept Medicare, Medicaid, and most major plans.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-block:clamp(40px,5vw,64px)">
+  <div class="container">
+    <form class="mform">
+      <div class="form-shell">
+        <aside class="form-aside">
+          <div class="fprogress">
+            <h4 data-en="Your progress" data-es="Tu progreso">Your progress</h4>
+            <div class="fprog-bar"><i></i></div>
+            <div class="fprog-item"><span class="n">1</span><span class="lbl" data-en="Primary insurance" data-es="Seguro principal">Primary insurance</span></div>
+            <div class="fprog-item"><span class="n">2</span><span class="lbl" data-en="Secondary & gov't" data-es="Secundario y gobierno">Secondary &amp; gov't</span></div>
+            <div class="fprog-item"><span class="n">3</span><span class="lbl" data-en="Upload & review" data-es="Cargar y revisar">Upload &amp; review</span></div>
+          </div>
+          <div class="aside-help">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span data-en="We accept" data-es="Aceptamos">We accept</span></h4>
+            <p data-en="Medicare · Medicaid · most major medical & vision plans. Questions about coverage? Call (844) 211-5462." data-es="Medicare · Medicaid · la mayoría de los planes médicos y de visión. ¿Preguntas sobre cobertura? Llama al (844) 211-5462.">Medicare · Medicaid · most major medical &amp; vision plans. Questions about coverage? Call (844) 211-5462.</p>
+          </div>
+        </aside>
+
+        <div class="form-panel">
+          <div class="fsteps-wrap">
+
+            <!-- STEP 1 -->
+            <div class="fstep">
+              <div class="fstep-head"><span class="step-of" data-en="Step 1 of 3" data-es="Paso 1 de 3">Step 1 of 3</span><h2 data-en="Primary insurance" data-es="Seguro principal">Primary insurance</h2><p data-en="Enter the details exactly as shown on your insurance card." data-es="Ingresa los datos tal como aparecen en tu tarjeta de seguro.">Enter the details exactly as shown on your insurance card.</p></div>
+              <div class="fgrid">
+                <div class="field col-2"><label data-en="Insurance company" data-es="Compañía de seguro">Insurance company <span class="req">*</span></label><input required type="text" data-en-ph="e.g. Medicare, Blue Cross, Aetna…" data-es-ph="ej. Medicare, Blue Cross, Aetna…"><div class="err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span data-en="Required" data-es="Requerido">Required</span></div></div>
+                <div class="field"><label data-en="Member ID" data-es="Número de miembro">Member ID <span class="req">*</span></label><input required type="text"><div class="err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span data-en="Required" data-es="Requerido">Required</span></div></div>
+                <div class="field"><label data-en="Group number" data-es="Número de grupo">Group number</label><input type="text"></div>
+                <div class="fieldset-title" data-en="Policyholder" data-es="Titular de la póliza">Policyholder</div>
+                <div class="field col-2"><label data-en="Is the patient the policyholder?" data-es="¿El paciente es el titular?">Is the patient the policyholder?</label>
+                  <div class="choices cols-2">
+                    <label class="choice"><input type="radio" name="ph" checked><span class="ct"><b data-en="Yes, I'm the policyholder" data-es="Sí, soy el titular">Yes, I'm the policyholder</b></span></label>
+                    <label class="choice"><input type="radio" name="ph"><span class="ct"><b data-en="No, someone else" data-es="No, otra persona">No, someone else</b></span></label>
+                  </div>
+                </div>
+                <div class="field"><label data-en="Policyholder name" data-es="Nombre del titular">Policyholder name</label><input type="text" data-en-ph="If not you" data-es-ph="Si no eres tú"></div>
+                <div class="field"><label data-en="Relationship to patient" data-es="Parentesco con el paciente">Relationship to patient</label><select><option data-en="Self" data-es="Yo mismo">Self</option><option data-en="Spouse" data-es="Cónyuge">Spouse</option><option data-en="Parent" data-es="Padre/Madre">Parent</option><option data-en="Other" data-es="Otro">Other</option></select></div>
+              </div>
+              <div class="fnav"><span class="spacer"></span><button class="btn btn-primary" data-step-next data-en="Continue" data-es="Continuar">Continue</button></div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="fstep" hidden>
+              <div class="fstep-head"><span class="step-of" data-en="Step 2 of 3" data-es="Paso 2 de 3">Step 2 of 3</span><h2 data-en="Secondary & government coverage" data-es="Cobertura secundaria y gubernamental">Secondary &amp; government coverage</h2><p data-en="Optional — only if you have additional coverage." data-es="Opcional: solo si tienes cobertura adicional.">Optional — only if you have additional coverage.</p></div>
+              <div class="fgrid">
+                <div class="field col-2"><label data-en="Do you have Medicare or Medicaid?" data-es="¿Tienes Medicare o Medicaid?">Do you have Medicare or Medicaid?</label>
+                  <div class="choices cols-3">
+                    <label class="choice"><input type="checkbox"><span class="ct"><b data-en="Medicare" data-es="Medicare">Medicare</b></span></label>
+                    <label class="choice"><input type="checkbox"><span class="ct"><b data-en="Medicaid" data-es="Medicaid">Medicaid</b></span></label>
+                    <label class="choice"><input type="checkbox"><span class="ct"><b data-en="Neither" data-es="Ninguno">Neither</b></span></label>
+                  </div>
+                </div>
+                <div class="field"><label data-en="Medicare / Medicaid ID" data-es="ID de Medicare / Medicaid">Medicare / Medicaid ID</label><input type="text"></div>
+                <div class="field"></div>
+                <div class="fieldset-title" data-en="Secondary insurance (optional)" data-es="Seguro secundario (opcional)">Secondary insurance (optional)</div>
+                <div class="field"><label data-en="Insurance company" data-es="Compañía de seguro">Insurance company</label><input type="text"></div>
+                <div class="field"><label data-en="Member ID" data-es="Número de miembro">Member ID</label><input type="text"></div>
+              </div>
+              <div class="fnav"><button class="btn btn-ghost" data-step-prev data-en="Back" data-es="Atrás">Back</button><span class="spacer"></span><button class="btn btn-primary" data-step-next data-en="Continue" data-es="Continuar">Continue</button></div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="fstep" hidden>
+              <div class="fstep-head"><span class="step-of" data-en="Step 3 of 3" data-es="Paso 3 de 3">Step 3 of 3</span><h2 data-en="Upload your card & review" data-es="Carga tu tarjeta y revisa">Upload your card &amp; review</h2><p data-en="A clear photo of your card speeds up check-in. Optional but recommended." data-es="Una foto clara de tu tarjeta agiliza el registro. Opcional pero recomendado.">A clear photo of your card speeds up check-in. Optional but recommended.</p></div>
+              <label data-en="Insurance card photos" data-es="Fotos de la tarjeta de seguro" style="font-size:13.5px;font-weight:600;color:var(--ink-text);display:block;margin-bottom:10px">Insurance card photos</label>
+              <div class="upload">
+                <div class="drop" data-upload><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><b data-en="Front of card" data-es="Frente de la tarjeta">Front of card</b><span data-en="Tap to upload" data-es="Toca para cargar">Tap to upload</span></div>
+                <div class="drop" data-upload><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><b data-en="Back of card" data-es="Reverso de la tarjeta">Back of card</b><span data-en="Tap to upload" data-es="Toca para cargar">Tap to upload</span></div>
+              </div>
+              <label class="choice" style="margin-top:20px"><input type="checkbox" required><span class="ct"><b data-en="I authorize MEC Eye Specialists to verify my insurance benefits." data-es="Autorizo a MEC Eye Specialists a verificar mis beneficios de seguro.">I authorize MEC Eye Specialists to verify my insurance benefits.</b></span></label>
+              <div class="fnav"><button class="btn btn-ghost" data-step-prev data-en="Back" data-es="Atrás">Back</button><span class="spacer"></span><button class="btn btn-primary" data-step-next data-en="Submit Insurance" data-es="Enviar Seguro">Submit Insurance</button></div>
+            </div>
+
+          </div>
+
+          <div class="fdone" hidden>
+            <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h2 data-en="Insurance submitted" data-es="Seguro enviado">Insurance submitted</h2>
+            <p data-en="Thank you. We'll verify your benefits before your appointment. Last step — please review and sign your consent forms." data-es="Gracias. Verificaremos tus beneficios antes de tu cita. Último paso: revisa y firma tus formularios de consentimiento.">Thank you. We'll verify your benefits before your appointment. Last step — please review and sign your consent forms.</p>
+            <div class="actions"><a href="consent.html" class="btn btn-primary" data-en="Continue to Consent Forms" data-es="Continuar a Consentimiento">Continue to Consent Forms</a><a href="../patients.html" class="btn btn-ghost" data-en="Back to Forms" data-es="Volver a Formularios">Back to Forms</a></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div data-footer></div>
+<script src="../assets/site.js"></script>
+<script src="../assets/footer.js"></script>
+<script>
+  document.querySelectorAll('[data-upload]').forEach(function(d){
+    d.addEventListener('click', function(){
+      d.classList.add('filled');
+      var b = d.querySelector('b'); var s = d.querySelector('span');
+      var lang = document.documentElement.getAttribute('lang') || 'en';
+      s.textContent = lang === 'es' ? '✓ Imagen cargada' : '✓ Image uploaded';
+    });
+  });
+</script>
+</body>
+</html>
