@@ -9,8 +9,8 @@
   .portal-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; align-items: start; }
   @media (max-width: 860px){ .portal-grid { grid-template-columns: 1fr; } }
   .portal-card { background: linear-gradient(140deg, var(--ink), var(--teal-deep)); color:#fff; border-radius: var(--radius-lg); padding: clamp(28px,4vw,44px); position: relative; overflow: hidden; }
-  .portal-card::after { content:""; position:absolute; inset:0; opacity:.55; background: radial-gradient(70% 110% at 92% 8%, rgba(226,154,60,.32), transparent 55%); }
-  .portal-card > * { position: relative; }
+  .portal-card::after { content:""; position:absolute; inset:0; opacity:.55; background: radial-gradient(70% 110% at 92% 8%, rgba(226,154,60,.32), transparent 55%); pointer-events: none; }
+  .portal-card > * { position: relative; z-index: 1; }
   .portal-card h2 { color:#fff; font-size: clamp(26px,3.2vw,36px); }
   .portal-card p { color: rgba(255,255,255,.84); margin-top: 14px; }
   .portal-form { background: rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); border-radius: var(--radius); padding: 22px; margin-top: 26px; display:grid; gap: 14px; }
