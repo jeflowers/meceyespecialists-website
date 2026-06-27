@@ -43,16 +43,30 @@
   <div class="container">
     <div class="portal-grid">
       <div class="portal-card">
-        <span class="eyebrow on-dark" data-en="Secure Login" data-es="Acceso Seguro">Secure Login</span>
-        <h2 style="margin-top:12px" data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</h2>
-        <p data-en="View test results, message your care team, request prescription refills, and check upcoming appointments — all in one secure place." data-es="Consulta resultados, comunícate con tu equipo, solicita resurtidos de recetas y revisa próximas citas, todo en un lugar seguro.">View test results, message your care team, request prescription refills, and check upcoming appointments — all in one secure place.</p>
-        <form class="portal-form" onsubmit="this.querySelector('.portal-msg').hidden=false;return false">
-          <input type="email" placeholder="Email" data-en-ph="Email address" data-es-ph="Correo electrónico" aria-label="Email">
-          <input type="password" placeholder="Password" data-en-ph="Password" data-es-ph="Contraseña" aria-label="Password">
-          <button class="btn btn-amber" type="submit" data-en="Log In to Portal" data-es="Entrar al Portal">Log In to Portal</button>
-          <div class="secure-note" style="color:rgba(255,255,255,.75);margin-top:2px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--amber-soft)"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span data-en="HIPAA-secure & encrypted" data-es="Seguro HIPAA y encriptado">HIPAA-secure &amp; encrypted</span></div>
-          <p class="portal-msg" hidden style="color:var(--amber-soft);font-size:13.5px;margin-top:10px;text-align:center" data-en="Portal access is provided after your first visit. Call (844) 211-5462 for help." data-es="El acceso al portal se proporciona después de tu primera visita. Llama al (844) 211-5462 para ayuda.">Portal access is provided after your first visit. Call (844) 211-5462 for help.</p>
-        </form>
+        <div id="portal-login">
+          <span class="eyebrow on-dark" data-en="Secure Login" data-es="Acceso Seguro">Secure Login</span>
+          <h2 style="margin-top:12px" data-en="Patient Portal" data-es="Portal del Paciente">Patient Portal</h2>
+          <p data-en="View test results, message your care team, request prescription refills, and check upcoming appointments — all in one secure place." data-es="Consulta resultados, comunícate con tu equipo, solicita resurtidos de recetas y revisa próximas citas, todo en un lugar seguro.">View test results, message your care team, request prescription refills, and check upcoming appointments — all in one secure place.</p>
+          <form class="portal-form" id="portal-form">
+            <input type="email" id="portal-email" placeholder="Email" data-en-ph="Email address" data-es-ph="Correo electrónico" aria-label="Email" required>
+            <input type="password" id="portal-password" placeholder="Password" data-en-ph="Password" data-es-ph="Contraseña" aria-label="Password" required>
+            <button class="btn btn-amber" type="submit" data-en="Log In to Portal" data-es="Entrar al Portal">Log In to Portal</button>
+            <div class="secure-note" style="color:rgba(255,255,255,.75);margin-top:2px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--amber-soft)"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span data-en="HIPAA-secure & encrypted" data-es="Seguro HIPAA y encriptado">HIPAA-secure &amp; encrypted</span></div>
+            <p id="portal-error" hidden style="color:#ff6b6b;font-size:13.5px;margin-top:10px;text-align:center"></p>
+          </form>
+          <p style="color:rgba(255,255,255,.55);font-size:12.5px;margin-top:14px;text-align:center" data-en="Test accounts: admin@meceyespecialists.com / staff@meceyespecialists.com / patient@test.com (passwords: Admin123! / Staff123! / Patient123!)" data-es="Cuentas de prueba: admin@meceyespecialists.com / staff@meceyespecialists.com / patient@test.com (contraseñas: Admin123! / Staff123! / Patient123!)">Test accounts: admin@meceyespecialists.com / staff@meceyespecialists.com / patient@test.com (passwords: Admin123! / Staff123! / Patient123!)</p>
+        </div>
+        <div id="portal-dashboard" hidden>
+          <span class="eyebrow on-dark" data-en="Welcome back" data-es="Bienvenido de nuevo">Welcome back</span>
+          <h2 style="margin-top:12px" id="portal-greeting"></h2>
+          <p style="margin-top:8px;color:rgba(255,255,255,.7);font-size:14px" id="portal-role-badge"></p>
+          <div style="margin-top:24px;display:grid;gap:12px">
+            <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:var(--aqua);flex:none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg><span style="color:#fff;font-size:14px;font-weight:600" data-en="No new test results" data-es="Sin nuevos resultados">No new test results</span></div>
+            <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:var(--amber);flex:none"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span style="color:#fff;font-size:14px;font-weight:600" data-en="Next appointment: Not scheduled" data-es="Próxima cita: No programada">Next appointment: Not scheduled</span></div>
+            <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:var(--aqua);flex:none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg><span style="color:#fff;font-size:14px;font-weight:600" data-en="0 unread messages" data-es="0 mensajes sin leer">0 unread messages</span></div>
+          </div>
+          <button class="btn btn-amber" id="portal-logout" style="margin-top:20px;width:100%" data-en="Log Out" data-es="Cerrar Sesión">Log Out</button>
+        </div>
       </div>
 
       <div class="bill-card" id="billpay">
@@ -99,7 +113,99 @@
 </section>
 
 <div data-footer></div>
+<script src="assets/supabase.js"></script>
 <script src="assets/site.js"></script>
 <script src="assets/footer.js"></script>
+<script>
+(function () {
+  var SUPABASE_URL = 'https://0ec90b57d6e95fcbda19832f.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJib2x0IiwicmVmIjoiMGVjOTBiNTdkNmU5NWZjYmRhMTk4MzJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg4ODE1NzQsImV4cCI6MTc1ODg4MTU3NH0.9I8-U0x86Ak8t2DGaIk0HfvTSLsAyzdnz-Nw00mMkKw';
+
+  var loginSection = document.getElementById('portal-login');
+  var dashboard = document.getElementById('portal-dashboard');
+  var form = document.getElementById('portal-form');
+  var errorEl = document.getElementById('portal-error');
+  var greeting = document.getElementById('portal-greeting');
+  var roleBadge = document.getElementById('portal-role-badge');
+  var logoutBtn = document.getElementById('portal-logout');
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.hidden = false;
+  }
+
+  function showDashboard(session) {
+    var meta = session.user.user_metadata || {};
+    var name = meta.full_name || session.user.email;
+    var lang = document.documentElement.getAttribute('lang') || 'en';
+    greeting.textContent = (lang === 'es' ? 'Hola, ' : 'Hello, ') + name;
+    var role = meta.role || 'patient';
+    var roleLabels = { admin: 'Administrator', staff: 'Staff Member', patient: 'Patient' };
+    var roleLabelsEs = { admin: 'Administrador', staff: 'Personal', patient: 'Paciente' };
+    roleBadge.textContent = (lang === 'es' ? 'Rol: ' + roleLabelsEs[role] : 'Role: ' + roleLabels[role]) + ' | ' + session.user.email;
+    loginSection.hidden = true;
+    dashboard.hidden = false;
+  }
+
+  function checkSession() {
+    var token = null;
+    try { token = localStorage.getItem('mec-session'); } catch (e) {}
+    if (token) {
+      var parsed = JSON.parse(token);
+      showDashboard(parsed);
+    }
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errorEl.hidden = true;
+    var email = document.getElementById('portal-email').value.trim();
+    var password = document.getElementById('portal-password').value;
+
+    if (!email || !password) { showError('Please enter email and password.'); return; }
+
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Signing in...';
+
+    fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({ email: email, password: password })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      btn.disabled = false;
+      var lang = document.documentElement.getAttribute('lang') || 'en';
+      btn.textContent = lang === 'es' ? 'Entrar al Portal' : 'Log In to Portal';
+
+      if (data.error) {
+        showError(data.error_description || data.error || 'Login failed.');
+        return;
+      }
+      if (data.access_token) {
+        var session = { user: data.user, access_token: data.access_token };
+        try { localStorage.setItem('mec-session', JSON.stringify(session)); } catch (e) {}
+        showDashboard(session);
+      }
+    })
+    .catch(function () {
+      btn.disabled = false;
+      showError('Network error. Please try again.');
+    });
+  });
+
+  logoutBtn.addEventListener('click', function () {
+    try { localStorage.removeItem('mec-session'); } catch (e) {}
+    loginSection.hidden = false;
+    dashboard.hidden = true;
+  });
+
+  checkSession();
+})();
+</script>
 </body>
 </html>
