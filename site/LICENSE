@@ -1,0 +1,31 @@
+Copyright © 2025 MEC Eye Specialists (Mercy Eye Care Medical Group).
+All rights reserved.
+
+This repository and its contents — including all source code, design, copy,
+photographs, logos, and other assets — are the proprietary property of
+MEC Eye Specialists, except where a third-party component is separately licensed
+(see "Third-party assets" below).
+
+No part of this repository may be copied, reproduced, modified, distributed,
+publicly displayed, or used to create derivative works, in whole or in part,
+without the prior written permission of MEC Eye Specialists.
+
+Permission is granted to the practice's authorized developers and contractors
+to use, modify, and deploy this code solely for the operation of the
+MEC Eye Specialists website.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
+OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Third-party assets:
+- Fonts "Newsreader" and "Hanken Grotesk" are provided by Google Fonts under the
+  SIL Open Font License 1.1 (https://scripts.sil.org/OFL).
+- Doctor photographs and the hero image are owned by MEC Eye Specialists and are
+  NOT licensed for reuse.
+
+For licensing inquiries, contact MEC Eye Specialists.

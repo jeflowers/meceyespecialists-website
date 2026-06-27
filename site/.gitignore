@@ -1,0 +1,58 @@
+# ---- OS / editor ----
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# ---- Logs ----
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ---- Dependencies (if a build is added later) ----
+node_modules/
+.pnp/
+.pnp.js
+jspm_packages/
+
+# ---- Build output / caches ----
+dist/
+build/
+out/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.tmp/
+*.tsbuildinfo
+
+# ---- Package-manager / tooling ----
+.npm/
+.eslintcache
+.stylelintcache
+
+# ---- Local / scratch ----
+scratch/
+tmp/
+*.bak
+*.orig
