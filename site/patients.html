@@ -118,8 +118,8 @@
 <script src="assets/footer.js"></script>
 <script>
 (function () {
-  var SUPABASE_URL = 'https://0ec90b57d6e95fcbda19832f.supabase.co';
-  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJib2x0IiwicmVmIjoiMGVjOTBiNTdkNmU5NWZjYmRhMTk4MzJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg4ODE1NzQsImV4cCI6MTc1ODg4MTU3NH0.9I8-U0x86Ak8t2DGaIk0HfvTSLsAyzdnz-Nw00mMkKw';
+  var SUPABASE_URL = (window.MEC && window.MEC.supabaseUrl) || '';
+  var SUPABASE_ANON_KEY = (window.MEC && window.MEC.supabaseAnonKey) || '';
 
   var loginSection = document.getElementById('portal-login');
   var dashboard = document.getElementById('portal-dashboard');
@@ -129,31 +129,96 @@
   var roleBadge = document.getElementById('portal-role-badge');
   var logoutBtn = document.getElementById('portal-logout');
 
+  function currentLang() {
+    return document.documentElement.getAttribute('lang') || 'en';
+  }
+
   function showError(msg) {
     errorEl.textContent = msg;
     errorEl.hidden = false;
   }
 
-  function showDashboard(session) {
-    var meta = session.user.user_metadata || {};
-    var name = meta.full_name || session.user.email;
-    var lang = document.documentElement.getAttribute('lang') || 'en';
+  /* One constant failure message: a message derived from the auth response
+     tells an attacker whether an account exists. */
+  function showLoginFailed() {
+    showError(currentLang() === 'es'
+      ? 'No pudimos iniciar su sesion. Revise su correo y contrasena e intente de nuevo.'
+      : 'We could not sign you in. Please check your email and password and try again.');
+  }
+
+  function readStoredToken() {
+    try {
+      var raw = localStorage.getItem('mec-session');
+      if (!raw) return null;
+      var parsed = JSON.parse(raw);
+      return (parsed && parsed.access_token) || null;
+    } catch (e) { return null; }
+  }
+
+  function clearStoredSession() {
+    try { localStorage.removeItem('mec-session'); } catch (e) {}
+  }
+
+  function showLogin() {
+    loginSection.hidden = false;
+    dashboard.hidden = true;
+  }
+
+  function renderDashboard(user, role) {
+    var lang = currentLang();
+    var meta = user.user_metadata || {};
+    var name = meta.full_name || user.email;
     greeting.textContent = (lang === 'es' ? 'Hola, ' : 'Hello, ') + name;
-    var role = meta.role || 'patient';
-    var roleLabels = { admin: 'Administrator', staff: 'Staff Member', patient: 'Patient' };
-    var roleLabelsEs = { admin: 'Administrador', staff: 'Personal', patient: 'Paciente' };
-    roleBadge.textContent = (lang === 'es' ? 'Rol: ' + roleLabelsEs[role] : 'Role: ' + roleLabels[role]) + ' | ' + session.user.email;
+    var labels = lang === 'es'
+      ? { admin: 'Administrador', staff: 'Personal', patient: 'Paciente' }
+      : { admin: 'Administrator', staff: 'Staff Member', patient: 'Patient' };
+    roleBadge.textContent = (lang === 'es' ? 'Rol: ' : 'Role: ') + (labels[role] || labels.patient) + ' | ' + user.email;
     loginSection.hidden = true;
     dashboard.hidden = false;
   }
 
+  /* The role must come from the database, not from the browser's copy of the
+     session, which the account holder can edit. */
+  function fetchRole(token, userId) {
+    return fetch(SUPABASE_URL + '/rest/v1/profiles?select=role&id=eq.' + encodeURIComponent(userId), {
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + token
+      }
+    })
+      .then(function (res) { return res.ok ? res.json() : []; })
+      .then(function (rows) { return (rows && rows[0] && rows[0].role) || 'patient'; })
+      .catch(function () { return 'patient'; });
+  }
+
+  /* A stored session proves nothing on its own, so the token is validated
+     against the auth server before any portal content is revealed. */
+  function activateSession(token) {
+    return fetch(SUPABASE_URL + '/auth/v1/user', {
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + token
+      }
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error('invalid session');
+        return res.json();
+      })
+      .then(function (user) {
+        if (!user || !user.id) throw new Error('invalid session');
+        return fetchRole(token, user.id).then(function (role) {
+          renderDashboard(user, role);
+        });
+      });
+  }
+
   function checkSession() {
-    var token = null;
-    try { token = localStorage.getItem('mec-session'); } catch (e) {}
-    if (token) {
-      var parsed = JSON.parse(token);
-      showDashboard(parsed);
-    }
+    var token = readStoredToken();
+    if (!token) return;
+    activateSession(token).catch(function () {
+      clearStoredSession();
+      showLogin();
+    });
   }
 
   form.addEventListener('submit', function (e) {
@@ -179,29 +244,40 @@
     .then(function (res) { return res.json(); })
     .then(function (data) {
       btn.disabled = false;
-      var lang = document.documentElement.getAttribute('lang') || 'en';
+      var lang = currentLang();
       btn.textContent = lang === 'es' ? 'Entrar al Portal' : 'Log In to Portal';
 
-      if (data.error) {
-        showError(data.error_description || data.error || 'Login failed.');
+      if (data.error || !data.access_token) {
+        if (data.error) { console.error('portal login failed', data.error); }
+        showLoginFailed();
         return;
       }
-      if (data.access_token) {
-        var session = { user: data.user, access_token: data.access_token };
-        try { localStorage.setItem('mec-session', JSON.stringify(session)); } catch (e) {}
-        showDashboard(session);
-      }
+      try { localStorage.setItem('mec-session', JSON.stringify({ access_token: data.access_token })); } catch (e) {}
+      activateSession(data.access_token).catch(function () {
+        clearStoredSession();
+        showLoginFailed();
+      });
     })
     .catch(function () {
       btn.disabled = false;
-      showError('Network error. Please try again.');
+      showError(currentLang() === 'es' ? 'Error de red. Intente de nuevo.' : 'Network error. Please try again.');
     });
   });
 
   logoutBtn.addEventListener('click', function () {
-    try { localStorage.removeItem('mec-session'); } catch (e) {}
-    loginSection.hidden = false;
-    dashboard.hidden = true;
+    var token = readStoredToken();
+    clearStoredSession();
+    showLogin();
+    if (token) {
+      /* Revoke the session server-side so the token cannot be replayed. */
+      fetch(SUPABASE_URL + '/auth/v1/logout', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + token
+        }
+      }).catch(function () {});
+    }
   });
 
   checkSession();
